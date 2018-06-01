@@ -76,7 +76,6 @@
                 android:id="@+id/imageButton22"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageButton21"
                 app:layout_constraintEnd_toEndOf="@+id/imageButton12"
                 app:layout_constraintTop_toTopOf="@+id/imageButton21"
                 app:srcCompat="@mipmap/ic_launcher" />
@@ -152,7 +151,7 @@
                 tools:text="4" />
 
             <ImageButton
-                android:id="@+id/imageButton20"
+                android:id="@+id/imageButton02"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
@@ -190,8 +189,13 @@
                 android:id="@+id/imageButton21"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageButton22"
+                app:layout_constraintStart_toEndOf="@+id/imageButton20"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton11"
                 app:srcCompat="@mipmap/ic_launcher" />
 
@@ -201,8 +205,8 @@
                 android:layout_height="120dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toStartOf="@+id/imageButton12"
-                app:layout_constraintHorizontal_bias="0.428"
                 app:layout_constraintStart_toEndOf="@+id/imageButton10"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton01"
                 app:srcCompat="@mipmap/ic_launcher" />
@@ -219,7 +223,10 @@
                 android:id="@+id/imageButton01"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
                 android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton02"
                 app:layout_constraintStart_toEndOf="@+id/imageButton00"
                 app:layout_constraintTop_toBottomOf="@+id/textView5"
                 app:srcCompat="@mipmap/ic_launcher" />
