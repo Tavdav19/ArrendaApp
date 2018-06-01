@@ -11,9 +11,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DbOpenHelper extends SQLiteOpenHelper {
 
 
+    public static final String NAME_DB = "arrenda.db";
+    public static final int VERSION_DB = 1;
 
-    public DbOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, "arrenda.db", null, 1);
+    public DbOpenHelper(Context context) {
+        super(context, NAME_DB, null, VERSION_DB);
     }
 
     @Override
