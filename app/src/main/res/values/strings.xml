@@ -96,4 +96,9 @@
     </string>
     <string name="title_activity_house2">House2Activity</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="hint">hint</string>
+    <string name="todo" />
+    <string name="textview" />
+    <string name="send">Send</string>
+    <string name="casa">casa</string>
 </resources>
