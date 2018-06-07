@@ -20,7 +20,8 @@ public class DbOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        DbTableHouse dbTableHouse = new DbTableHouse(db);
+        dbTableHouse.create();
 
     }
 

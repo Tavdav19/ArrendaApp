@@ -9,4 +9,8 @@ public class DbTableHouse implements BaseColumns {
     public DbTableHouse (SQLiteDatabase db){
         this.db = db;
     }
+
+    public void create(){
+
+    }
 }
