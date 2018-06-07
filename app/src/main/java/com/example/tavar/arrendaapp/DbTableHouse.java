@@ -11,6 +11,13 @@ public class DbTableHouse implements BaseColumns {
     }
 
     public void create(){
+        String FIELD_DESC = "description";
+        db.execSQL(
+                "CREATE TABLE house("+
+                        _ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        FIELD_DESC + "TEXT NOT NULL," +
+                        "Loc" + "TEXT NOT NULL,"
 
+        );
     }
 }

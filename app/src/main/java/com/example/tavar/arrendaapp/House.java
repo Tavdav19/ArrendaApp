@@ -5,7 +5,6 @@ public class House {
     private String description;
     private String Loc;
     private long idLoc;
-    private String seller;
     private long idSeller;
     private int people;
     private int bedroom;
@@ -41,14 +40,6 @@ public class House {
 
     public void setIdLoc(long idLoc) {
         this.idLoc = idLoc;
-    }
-
-    public String getSeller() {
-        return seller;
-    }
-
-    public void setSeller(String seller) {
-        this.seller = seller;
     }
 
     public long getIdSeller() {
