@@ -6,7 +6,7 @@ import android.provider.BaseColumns;
 
 public class DbTableSeller implements BaseColumns {
     private SQLiteDatabase db;
-    private static final String TABLE_HOUSE = "house";
+    public static final String TABLE_HOUSE = "house";
     private static final String FIELD_USER = "userName";
 
     public DbTableSeller (SQLiteDatabase db){

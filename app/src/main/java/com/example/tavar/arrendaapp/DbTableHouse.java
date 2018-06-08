@@ -10,8 +10,9 @@ public class DbTableHouse implements BaseColumns {
     private static final String FIELD_PEOPLE = "people";
     private static final String FIELD_BEDROOM = "bedroom";
     private static final String FIELD_BATHROOM = "bathroom";
+    private static final String FIELD_ID_SELLER= "idSeller";
 
-    public DbTableHouse (SQLiteDatabase db){
+    DbTableHouse(SQLiteDatabase db){
         this.db = db;
     }
 
@@ -24,6 +25,12 @@ public class DbTableHouse implements BaseColumns {
                         FIELD_PEOPLE + "INTEGER," +
                         FIELD_BEDROOM + "INTEGER," +
                         FIELD_BATHROOM + "INTEGER," +
+                        FIELD_ID_SELLER + "LONG," +
+
+                        "FOREIGN KEY (" + FIELD_ID_SELLER + ") REFERENCES " +
+                            DbTableSeller.TABLE_HOUSE +
+                                "(" + DbTableSeller._ID +")" +
+                        ")"
         );
     }
 }
