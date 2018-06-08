@@ -3,8 +3,7 @@ package com.example.tavar.arrendaapp;
 public class House {
     private long id;
     private String description;
-    private String Loc;
-    private long idLoc;
+    private String loc;
     private long idSeller;
     private int people;
     private int bedroom;
@@ -27,19 +26,11 @@ public class House {
     }
 
     public String getLoc() {
-        return Loc;
+        return loc;
     }
 
     public void setLoc(String loc) {
-        Loc = loc;
-    }
-
-    public long getIdLoc() {
-        return idLoc;
-    }
-
-    public void setIdLoc(long idLoc) {
-        this.idLoc = idLoc;
+        this.loc = loc;
     }
 
     public long getIdSeller() {
