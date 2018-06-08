@@ -1,8 +1,6 @@
 package com.example.tavar.arrendaapp;
 
-import android.provider.BaseColumns;
-
-public class Seller implements BaseColumns {
+public class Seller{
     private long id;
     private String userName;
 
