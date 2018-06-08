@@ -12,7 +12,7 @@ public class DbTableHouse implements BaseColumns {
     private static final String FIELD_BATHROOM = "bathroom";
     private static final String FIELD_ID_SELLER= "idSeller";
 
-    DbTableHouse(SQLiteDatabase db){
+    public DbTableHouse (SQLiteDatabase db){
         this.db = db;
     }
 
