@@ -1,10 +1,12 @@
 package com.example.tavar.arrendaapp;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
 public class DbTableHouse implements BaseColumns {
     private SQLiteDatabase db;
+    public static final String TABLE_HOUSE = "house";
     private static final String FIELD_DESC = "description";
     private static final String FIELD_LOC = "loc";
     private static final String FIELD_PEOPLE = "people";
@@ -18,7 +20,7 @@ public class DbTableHouse implements BaseColumns {
 
     public void create(){
         db.execSQL(
-                "CREATE TABLE house("+
+                "CREATE TABLE " + TABLE_HOUSE + "(" +
                         _ID + "LONG PRIMARY KEY AUTOINCREMENT," +
                         FIELD_DESC + "TEXT NOT NULL," +
                         FIELD_LOC + "TEXT NOT NULL," +
@@ -28,9 +30,12 @@ public class DbTableHouse implements BaseColumns {
                         FIELD_ID_SELLER + "LONG," +
 
                         "FOREIGN KEY (" + FIELD_ID_SELLER + ") REFERENCES " +
-                            DbTableSeller.TABLE_HOUSE +
+                            DbTableSeller.TABLE_SELLER +
                                 "(" + DbTableSeller._ID +")" +
                         ")"
         );
+    }
+    public Cursor query (String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy) {
+        return db.query(TABLE_HOUSE, columns, selection, selectionArgs, groupBy, having, orderBy);
     }
 }

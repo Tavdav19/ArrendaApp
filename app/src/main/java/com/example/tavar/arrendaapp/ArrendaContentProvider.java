@@ -24,7 +24,7 @@ public class ArrendaContentProvider extends ContentProvider {
     DbOpenHelper openHelper;
 
     private static UriMatcher getUriMarcher(){
-        UriMatcher uriMatcher = new UriMatcher(UriMatcher(UriMatcher.NO_MATCH));
+        UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH));
 
         uriMatcher.addURI(AUTHORITY, "house", HOUSE);
         uriMatcher.addURI(AUTHORITY, "house/#", HOUSE_ID);
@@ -132,14 +132,21 @@ public class ArrendaContentProvider extends ContentProvider {
 
         String id = uri.getLastPathSegment();
 
-        UriMarcher matcher = getUriMarcher();
+        UriMatcher matcher = getUriMarcher();
 
         switch (matcher.match(uri)){
-            case  
+            case  HOUSE:
+                return new DbTableHouse(db).query(projection, selection, selectionArgs, null, null, sortOrder);
+            case  SELLER:
+                return new DbTableSeller(db).query(projection, selection, selectionArgs, null, null, sortOrder);
+            case  HOUSE_ID:
+                return new DbTableHouse(db).query(projection, DbTableHouse._ID + "=?", new String[] { id }, null, null, null);
+            case  SELLER_ID:
+                return new DbTableSeller(db).query(projection, DbTableSeller._ID + "=?", new String[] { id }, null, null, null);
 
+            default:
+                throw new UnsupportedOperationException("Invalid URI: " + uri);
         }
-
-        return null;
     }
 
     /**
