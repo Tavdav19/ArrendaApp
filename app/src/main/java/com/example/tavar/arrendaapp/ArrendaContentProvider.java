@@ -170,7 +170,21 @@ public class ArrendaContentProvider extends ContentProvider {
     @Nullable
     @Override
     public String getType(@NonNull Uri uri) {
-        return null;
+        UriMatcher matcher = getUriMarcher();
+
+        switch (matcher.match(uri)){
+            case HOUSE:
+                return "vnd.android.cursor.dir" +"/"+ DbTableHouse.TABLE_HOUSE;
+            case SELLER:
+                return "vnd.android.cursor.dir" +"/"+ DbTableSeller.TABLE_SELLER;
+            case HOUSE_ID:
+                return "vnd.android.cursor.item" + "/" + AUTHORITY + "/" + DbTableHouse.TABLE_HOUSE;
+            case SELLER_ID:
+                return "vnd.android.cursor.item" + "/" + AUTHORITY + "/" + DbTableSeller.TABLE_SELLER;
+
+            default:
+                throw new UnsupportedOperationException("Unknown URI: "+ uri);
+        }
     }
 
     /**
