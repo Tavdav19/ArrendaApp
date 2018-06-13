@@ -1,13 +1,14 @@
 package com.example.tavar.arrendaapp;
 
 import android.content.ContentProvider;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.ContentObserver;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.net.ProxyInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -21,10 +22,13 @@ public class ArrendaContentProvider extends ContentProvider {
     private static final int HOUSE_ID = 101;
     private static final int SELLER = 200;
     private static final int SELLER_ID = 201;
+    private static final String MULTIPLE_ITEMS = "vnd.android.cursor.dir";
+    private static final String SINGLE_ITEM = "vnd.android.cursor.item";
+
     DbOpenHelper openHelper;
 
     private static UriMatcher getUriMarcher(){
-        UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH));
+        UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
         uriMatcher.addURI(AUTHORITY, "house", HOUSE);
         uriMatcher.addURI(AUTHORITY, "house/#", HOUSE_ID);
@@ -69,7 +73,7 @@ public class ArrendaContentProvider extends ContentProvider {
      * Implement this to handle query requests from clients.
      * <p>
      * <p>Apps targeting {@link Build.VERSION_CODES#O} or higher should override
-     * {@link #query(Uri, String[], Bundle, CancellationSignal)} and provide a stub
+     *  and provide a stub
      * implementation of this method.
      * <p>
      * <p>This method can be called from multiple threads, as described in
@@ -174,13 +178,13 @@ public class ArrendaContentProvider extends ContentProvider {
 
         switch (matcher.match(uri)){
             case HOUSE:
-                return "vnd.android.cursor.dir" +"/"+ DbTableHouse.TABLE_HOUSE;
+                return MULTIPLE_ITEMS +"/"+ DbTableHouse.TABLE_HOUSE;
             case SELLER:
-                return "vnd.android.cursor.dir" +"/"+ DbTableSeller.TABLE_SELLER;
+                return MULTIPLE_ITEMS +"/"+ DbTableSeller.TABLE_SELLER;
             case HOUSE_ID:
-                return "vnd.android.cursor.item" + "/" + AUTHORITY + "/" + DbTableHouse.TABLE_HOUSE;
+                return SINGLE_ITEM + "/" + AUTHORITY + "/" + DbTableHouse.TABLE_HOUSE;
             case SELLER_ID:
-                return "vnd.android.cursor.item" + "/" + AUTHORITY + "/" + DbTableSeller.TABLE_SELLER;
+                return SINGLE_ITEM + "/" + AUTHORITY + "/" + DbTableSeller.TABLE_SELLER;
 
             default:
                 throw new UnsupportedOperationException("Unknown URI: "+ uri);
@@ -203,7 +207,35 @@ public class ArrendaContentProvider extends ContentProvider {
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
-        return null;
+        SQLiteDatabase db = openHelper.getWritableDatabase();
+
+        UriMatcher matcher = getUriMarcher();
+
+        long id = -1;
+
+        switch (matcher.match(uri)) {
+            case HOUSE:
+                id = new DbTableHouse(db).insert(values);
+                break;
+
+            case SELLER:
+                id = new DbTableSeller(db).insert(values);
+                break;
+
+            default:
+                throw new UnsupportedOperationException("Invalid URI: " + uri);
+        }
+
+        if (id > 0) {
+            notifyChanges(uri);
+            return Uri.withAppendedPath(uri, Long.toString(id));
+        } else {
+            throw new SQLException("Could not insert record");
+        }
+    }
+
+    private void notifyChanges(@NonNull Uri uri) {
+        getContext().getContentResolver().notifyChange(uri, null);
     }
 
     /**
@@ -229,8 +261,32 @@ public class ArrendaContentProvider extends ContentProvider {
      */
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
-        return 0;
+        SQLiteDatabase db = openHelper.getWritableDatabase();
+
+        UriMatcher matcher = getUriMarcher();
+
+        String id = uri.getLastPathSegment();
+
+        int rows = 0;
+
+        switch (matcher.match(uri)) {
+            case HOUSE_ID:
+                rows = new DbTableHouse(db).delete(DbTableHouse._ID +"=?", new String [] { id });
+                break;
+
+            case SELLER_ID:
+                rows = new DbTableSeller(db).delete(DbTableSeller._ID +"=?", new String [] { id });
+                break;
+
+            default:
+                throw new UnsupportedOperationException("Invalid URI: " + uri);
+        }
+
+        if (rows > 0) notifyChanges(uri);
+
+        return rows;
     }
+
 
     /**
      * Implement this to handle requests to update one or more rows.
@@ -252,6 +308,30 @@ public class ArrendaContentProvider extends ContentProvider {
      */
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
-        return 0;
+        SQLiteDatabase db = openHelper.getWritableDatabase();
+
+        UriMatcher matcher = getUriMarcher();
+
+        String id = uri.getLastPathSegment();
+
+        int rows = 0;
+
+        switch (matcher.match(uri)) {
+            case HOUSE_ID:
+                rows = new DbTableHouse(db).update(values, DbTableHouse._ID +"=?", new String [] { id });
+                break;
+
+            case SELLER_ID:
+                rows = new DbTableSeller(db).update(values, DbTableSeller._ID +"=?", new String [] { id });
+                break;
+
+            default:
+                throw new UnsupportedOperationException("Invalid URI: " + uri);
+        }
+
+        if (rows > 0) notifyChanges(uri);
+
+        return rows;
     }
 }
+
