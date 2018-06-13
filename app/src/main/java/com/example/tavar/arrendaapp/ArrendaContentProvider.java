@@ -2,17 +2,30 @@ package com.example.tavar.arrendaapp;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.UriMatcher;
 import android.database.ContentObserver;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-public class BooksContentProvider extends ContentProvider {
+public class ArrendaContentProvider extends ContentProvider {
+    DbOpenHelper openHelper;
 
+    private static UriMatcher getUriMarcher(){
+        UriMatcher uriMatcher = new UriMatcher(UriMatcher(UriMatcher.NO_MATCH));
 
+        uriMatcher.addURI(com.example.tavar.arrendaapp, "house", 100);
+        uriMatcher.addURI(com.example.tavar.arrendaapp, "house/#",101);
+
+        uriMatcher.addURI(com.example.tavar.arrendaapp, "seller",200);
+        uriMatcher.addURI(com.example.tavar.arrendaapp,"seller/#",201);
+
+        return uriMatcher;
+    }
     /**
      * Implement this to initialize your content provider on startup.
      * This method is called for all registered content providers on the
@@ -40,7 +53,8 @@ public class BooksContentProvider extends ContentProvider {
      */
     @Override
     public boolean onCreate() {
-        return false;
+        openHelper = new DbOpenHelper(getContext());
+        return true;
     }
 
     /**
@@ -106,6 +120,17 @@ public class BooksContentProvider extends ContentProvider {
     @Nullable
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
+        SQLiteDatabase db = openHelper.getReadableDatabase();
+
+        String id = uri.getLastPathSegment();
+
+        UriMarcher matcher = getUriMarcher();
+
+        switch (matcher.match(uri)){
+
+
+        }
+
         return null;
     }
 
