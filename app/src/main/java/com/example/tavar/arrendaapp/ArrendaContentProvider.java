@@ -7,22 +7,30 @@ import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.ProxyInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 public class ArrendaContentProvider extends ContentProvider {
+
+    private static final String AUTHORITY = "com.example.tavar.arrendaapp";
+
+    private static final int HOUSE = 100;
+    private static final int HOUSE_ID = 101;
+    private static final int SELLER = 200;
+    private static final int SELLER_ID = 201;
     DbOpenHelper openHelper;
 
     private static UriMatcher getUriMarcher(){
         UriMatcher uriMatcher = new UriMatcher(UriMatcher(UriMatcher.NO_MATCH));
 
-        uriMatcher.addURI(com.example.tavar.arrendaapp, "house", 100);
-        uriMatcher.addURI(com.example.tavar.arrendaapp, "house/#",101);
+        uriMatcher.addURI(AUTHORITY, "house", HOUSE);
+        uriMatcher.addURI(AUTHORITY, "house/#", HOUSE_ID);
 
-        uriMatcher.addURI(com.example.tavar.arrendaapp, "seller",200);
-        uriMatcher.addURI(com.example.tavar.arrendaapp,"seller/#",201);
+        uriMatcher.addURI(AUTHORITY, "seller", SELLER);
+        uriMatcher.addURI(AUTHORITY,"seller/#", SELLER_ID);
 
         return uriMatcher;
     }
@@ -127,7 +135,7 @@ public class ArrendaContentProvider extends ContentProvider {
         UriMarcher matcher = getUriMarcher();
 
         switch (matcher.match(uri)){
-
+            case  
 
         }
 
