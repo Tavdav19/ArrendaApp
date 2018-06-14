@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Activity_Edit"
+    tools:showIn="@layout/activity_edit">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/section_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintTop_creator="1" />
+
+        <ImageButton
+            android:id="@+id/imageButton20"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintStart_toStartOf="@+id/imageButton10"
+            app:layout_constraintTop_toTopOf="@+id/imageButton21"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textViewUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="38dp"
+            android:layout_marginEnd="123dp"
+            android:layout_marginTop="8dp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/imageButton00"
+            app:layout_constraintEnd_toStartOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="@+id/imageViewPerfil"
+            app:layout_constraintTop_toBottomOf="@+id/textViewLoc"
+            tools:text="Zé vende"
+            android:layout_marginRight="123dp" />
+
+        <TextView
+            android:id="@+id/textViewPeople"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewBedroom"
+            app:layout_constraintEnd_toEndOf="@+id/imageIconPpl"
+            app:layout_constraintStart_toStartOf="@+id/imageIconPpl"
+            app:layout_constraintTop_toBottomOf="@+id/imageIconPpl"
+            tools:text="12" />
+
+        <ImageView
+            android:id="@+id/imageViewPerfil"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/textViewDesc"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <ImageButton
+            android:id="@+id/imageButton22"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton12"
+            app:layout_constraintTop_toTopOf="@+id/imageButton21"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textViewLoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textViewUserName"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewPerfil"
+            app:layout_constraintStart_toStartOf="@+id/imageViewPerfil"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPerfil"
+            tools:text="Albufeira" />
+
+        <TextView
+            android:id="@+id/textViewBedroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/imageIconBed"
+            app:layout_constraintStart_toStartOf="@+id/imageIconBed"
+            app:layout_constraintTop_toBottomOf="@+id/imageIconBed"
+            tools:text="2" />
+
+        <TextView
+            android:id="@+id/textViewDesc"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/imageIconBed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imageViewPerfil"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageIconBed"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/imageIconBath"
+            app:layout_constraintStart_toEndOf="@+id/imageIconPpl"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPerfil"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textViewBathroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewBedroom"
+            app:layout_constraintEnd_toEndOf="@+id/imageIconBath"
+            app:layout_constraintStart_toStartOf="@+id/imageIconBath"
+            app:layout_constraintTop_toBottomOf="@+id/imageIconBath"
+            tools:text="4" />
+
+        <ImageButton
+            android:id="@+id/imageButton02"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintEnd_toEndOf="@+id/textViewDesc"
+            app:layout_constraintTop_toTopOf="@+id/imageButton01"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <ImageButton
+            android:id="@+id/imageButton10"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintStart_toStartOf="@+id/imageButton00"
+            app:layout_constraintTop_toTopOf="@+id/imageButton11"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/imageIconPpl"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageIconBed"
+            app:layout_constraintEnd_toStartOf="@+id/imageIconBed"
+            app:layout_constraintStart_toStartOf="@+id/textViewDesc"
+            app:layout_constraintTop_toTopOf="@+id/imageIconBed"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:layout_marginLeft="8dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton12"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintEnd_toEndOf="@+id/textViewDesc"
+            app:layout_constraintTop_toTopOf="@+id/imageButton11"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <ImageButton
+            android:id="@+id/imageButton21"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton22"
+            app:layout_constraintStart_toEndOf="@+id/imageButton20"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton11"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <ImageButton
+            android:id="@+id/imageButton11"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton12"
+            app:layout_constraintStart_toEndOf="@+id/imageButton10"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton01"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <ImageButton
+            android:id="@+id/imageButton00"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintStart_toStartOf="@+id/imageViewPerfil"
+            app:layout_constraintTop_toTopOf="@+id/imageButton01"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <ImageButton
+            android:id="@+id/imageButton01"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton02"
+            app:layout_constraintStart_toEndOf="@+id/imageButton00"
+            app:layout_constraintTop_toBottomOf="@+id/textViewBedroom"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/imageIconBath"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageIconBed"
+            app:layout_constraintEnd_toEndOf="@+id/textViewDesc"
+            app:layout_constraintStart_toEndOf="@+id/imageIconBed"
+            app:layout_constraintTop_toTopOf="@+id/imageIconBed"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout>
