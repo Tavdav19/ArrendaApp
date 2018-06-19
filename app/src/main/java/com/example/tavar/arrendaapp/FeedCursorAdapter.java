@@ -10,11 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class CursorAdapter extends RecyclerView.Adapter<CursorAdapter.FeedViewHolder> {
+public class FeedCursorAdapter extends RecyclerView.Adapter<FeedCursorAdapter.FeedViewHolder> {
     private Context context;
     private Cursor cursor = null;
+    private View.OnClickListener viewHolderClickListener = null;
+    private  int lastHouseClicked = -1;
 
-    public CursorAdapter(Context context){ this.context = context; }
+    public FeedCursorAdapter(Context context){ this.context = context; }
 
 
     public void refreshData (Cursor cursor){
@@ -23,6 +25,15 @@ public class CursorAdapter extends RecyclerView.Adapter<CursorAdapter.FeedViewHo
             notifyDataSetChanged();
         }
     }
+
+    public void setViewHolderClickListener(View.OnClickListener viewHolderClickListener) {
+        this.viewHolderClickListener = viewHolderClickListener;
+    }
+
+    public int getLastHouseClicked() {
+        return lastHouseClicked;
+    }
+
     /**
      * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
      * an item.
@@ -45,8 +56,8 @@ public class CursorAdapter extends RecyclerView.Adapter<CursorAdapter.FeedViewHo
      */
     @NonNull
     @Override
-    public CursorAdapter.FeedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View item = LayoutInflater.from(context).inflate(R.layout.content_feed, parent, false);
+    public FeedCursorAdapter.FeedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View item = LayoutInflater.from(context).inflate(R.layout.item_house, parent, false);
         return new FeedViewHolder(item);
     }
 
@@ -71,7 +82,7 @@ public class CursorAdapter extends RecyclerView.Adapter<CursorAdapter.FeedViewHo
      * @param position The position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(@NonNull CursorAdapter.FeedViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FeedCursorAdapter.FeedViewHolder holder, int position) {
         cursor.moveToPosition(position);
         House house = DbTableHouse.getCurrentHouseFromCursor(cursor);
         holder.setHouse(house);
@@ -91,17 +102,20 @@ public class CursorAdapter extends RecyclerView.Adapter<CursorAdapter.FeedViewHo
 
     public class FeedViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener {
         private TextView textViewLoc;
-        private long houseId;
+        private TextView textViewPrice;
+        private int houseId;
 
         public FeedViewHolder(View itemView){
             super(itemView);
 
             textViewLoc = (TextView) itemView.findViewById(R.id.textViewLoc);
+            textViewPrice = (TextView) itemView.findViewById(R.id.textViewPrice);
 
             itemView.setOnClickListener(this);
         }
         public void setHouse(House house){
             textViewLoc.setText(house.getLoc());
+            textViewPrice.setText(String.format( "int" ,house.getWeekPrice())+ "€");
             houseId = house.getId();
         }
 
@@ -112,7 +126,16 @@ public class CursorAdapter extends RecyclerView.Adapter<CursorAdapter.FeedViewHo
          */
         @Override
         public void onClick(View v) {
+            int position = getAdapterPosition();
+
+            if(position == RecyclerView.NO_POSITION){
           return;
         }
+        if(viewHolderClickListener !=null){
+                lastHouseClicked = houseId;
+                viewHolderClickListener.onClick(v);
+        }
+        }
+        }
     }
-}
+

@@ -21,23 +21,28 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".FeedActivity"
-            android:label="@string/title_activity_feed"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+
+
         <activity
             android:name=".HouseActivity"
             android:label="@string/title_activity_house2"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/AppTheme.NoActionBar"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <provider
+            android:authorities="com.example.tavar.arrendaapp"
+            android:name=".ArrendaContentProvider"
+            android:exported="false"
+            />
+
         <activity
-            android:name=".Activity_Edit"
+            android:name=".ActivityEdit"
             android:label="@string/title_activity__edit"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

@@ -18,6 +18,10 @@ public class ArrendaContentProvider extends ContentProvider {
 
     private static final String AUTHORITY = "com.example.tavar.arrendaapp";
 
+    public static final Uri BASE_URI = Uri.parse("content://" + AUTHORITY);
+    public static final Uri HOUSE_URI = Uri.withAppendedPath(BASE_URI, DbTableHouse.TABLE_HOUSE);
+    public static final Uri SELLER_URI = Uri.withAppendedPath(BASE_URI, DbTableSeller.TABLE_SELLER);
+
     private static final int HOUSE = 100;
     private static final int HOUSE_ID = 101;
     private static final int SELLER = 200;

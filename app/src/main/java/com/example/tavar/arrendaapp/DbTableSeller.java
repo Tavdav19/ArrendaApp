@@ -19,7 +19,7 @@ public class DbTableSeller implements BaseColumns {
 
         db.execSQL(
                 "CREATE TABLE " + TABLE_SELLER + "(" +
-                    _ID + "LONG PRIMARY KEY AUTOINCREMENT," +
+                    _ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
                     FIELD_USER + "TEXT NOT NULL" +
                     ")"
         );

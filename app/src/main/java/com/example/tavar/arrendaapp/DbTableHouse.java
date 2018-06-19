@@ -8,6 +8,7 @@ import android.provider.BaseColumns;
 public class DbTableHouse implements BaseColumns {
     private SQLiteDatabase db;
     public static final String TABLE_HOUSE = "house";
+
     private static final String FIELD_DESC = "description";
     private static final String FIELD_LOC = "loc";
     private static final String FIELD_PEOPLE = "people";
@@ -16,6 +17,9 @@ public class DbTableHouse implements BaseColumns {
     private static final String FIELD_WEEKPRICE= "weekPrice";
     private static final String FIELD_ID_SELLER= "idSeller";
 
+    public static final String [] ALL_COLUMNS = new String[] { _ID, FIELD_DESC, FIELD_LOC, FIELD_PEOPLE, FIELD_BEDROOM, FIELD_BATHROOM, FIELD_WEEKPRICE, FIELD_ID_SELLER };
+
+
     public DbTableHouse (SQLiteDatabase db){
         this.db = db;
     }
@@ -23,14 +27,14 @@ public class DbTableHouse implements BaseColumns {
     public void create(){
         db.execSQL(
                 "CREATE TABLE " + TABLE_HOUSE + "(" +
-                        _ID + "LONG PRIMARY KEY AUTOINCREMENT," +
+                        _ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
                         FIELD_DESC + "TEXT NOT NULL," +
                         FIELD_LOC + "TEXT NOT NULL," +
                         FIELD_PEOPLE + "INTEGER," +
                         FIELD_BEDROOM + "INTEGER," +
                         FIELD_BATHROOM + "INTEGER," +
                         FIELD_WEEKPRICE + "INTEGER," +
-                        FIELD_ID_SELLER + "LONG," +
+                        FIELD_ID_SELLER + "INTEGER," +
 
                         "FOREIGN KEY (" + FIELD_ID_SELLER + ") REFERENCES " +
                             DbTableSeller.TABLE_SELLER +

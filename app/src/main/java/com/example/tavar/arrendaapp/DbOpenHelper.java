@@ -32,6 +32,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
 
         Seller seller = new Seller();
         seller.setUserName("David Tavares");
+        seller.setPassword("1234567890");
         int idSeller = (int) dbTableSeller.insert(DbTableSeller.getContentValues(seller));
 
         DbTableHouse dbTableHouse = new DbTableHouse(db);
@@ -63,7 +64,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
         house.setPeople(5);
         house.setBedroom(3);
         house.setBathroom(1);
-        house.setWeekPrice(300);
+        house.setWeekPrice(400);
         dbTableHouse.insert(DbTableHouse.getContentValues(house));
 
         house = new House();
@@ -73,7 +74,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
         house.setPeople(10);
         house.setBedroom(5);
         house.setBathroom(2);
-        house.setWeekPrice(300);
+        house.setWeekPrice(900);
         dbTableHouse.insert(DbTableHouse.getContentValues(house));
     }
     @Override

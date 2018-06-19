@@ -1,14 +1,15 @@
 package com.example.tavar.arrendaapp;
 
 public class Seller{
-    private long id;
+    private int id;
     private String userName;
+    private String password;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -19,4 +20,8 @@ public class Seller{
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+    public String getPassword() {return password;}
+
+    public void setPassword(String passWord) {this.password = password;}
 }

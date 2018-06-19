@@ -1,21 +1,21 @@
 package com.example.tavar.arrendaapp;
 
 public class House {
-    private long id;
+    private int id;
     private String description;
     private String loc;
-    private long idSeller;
+    private int idSeller;
     private int people;
     private int bedroom;
     private int Bathroom;
     private int weekPrice;
 
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -35,11 +35,11 @@ public class House {
         this.loc = loc;
     }
 
-    public long getIdSeller() {
+    public int getIdSeller() {
         return idSeller;
     }
 
-    public void setIdSeller(long idSeller) {
+    public void setIdSeller(int idSeller) {
         this.idSeller = idSeller;
     }
 
