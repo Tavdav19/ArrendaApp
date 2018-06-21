@@ -9,6 +9,10 @@ public class DbTableSeller implements BaseColumns {
     private SQLiteDatabase db;
     public static final String TABLE_SELLER = "seller";
     public static final String FIELD_USER = "userName";
+    private static final String FIELD_PASSWORD = "password";
+
+    public static final String [] ALL_COLUMNS = new String[] {_ID, FIELD_USER};
+
 
     public DbTableSeller (SQLiteDatabase db){
         this.db = db;
@@ -20,7 +24,8 @@ public class DbTableSeller implements BaseColumns {
         db.execSQL(
                 "CREATE TABLE " + TABLE_SELLER + "(" +
                     _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    FIELD_USER + " TEXT NOT NULL" +
+                    FIELD_USER + " TEXT NOT NULL," +
+                        FIELD_PASSWORD + " TEXT NOT NULL" +
                     ")"
         );
     }
