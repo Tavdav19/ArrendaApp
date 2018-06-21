@@ -25,11 +25,11 @@ public class DbOpenHelper extends SQLiteOpenHelper {
         DbTableSeller dbTableSeller = new DbTableSeller(db);
         dbTableSeller.create();
 
-        if(!PRODUCTION){
+       /* if(!PRODUCTION){
             seed(db);
-        }
+        }*/
     }
-
+/*
     private void seed(SQLiteDatabase db){
         DbTableSeller dbTableSeller = new DbTableSeller(db);
 
@@ -79,7 +79,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
         house.setBathroom(2);
         house.setWeekPrice(900);
         dbTableHouse.insert(DbTableHouse.getContentValues(house));
-    }
+    }*/
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
