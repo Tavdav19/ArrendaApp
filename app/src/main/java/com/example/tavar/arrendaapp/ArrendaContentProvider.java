@@ -29,7 +29,7 @@ public class ArrendaContentProvider extends ContentProvider {
     private static final String MULTIPLE_ITEMS = "vnd.android.cursor.dir";
     private static final String SINGLE_ITEM = "vnd.android.cursor.item";
 
-    DbOpenHelper openHelper;
+    DbOpenHelper feedOpenHelper;
 
     private static UriMatcher getUriMarcher(){
         UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -69,7 +69,7 @@ public class ArrendaContentProvider extends ContentProvider {
      */
     @Override
     public boolean onCreate() {
-        openHelper = new DbOpenHelper(getContext());
+        feedOpenHelper = new DbOpenHelper(getContext());
         return true;
     }
 
@@ -136,7 +136,7 @@ public class ArrendaContentProvider extends ContentProvider {
     @Nullable
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
-        SQLiteDatabase db = openHelper.getReadableDatabase();
+        SQLiteDatabase db = feedOpenHelper.getReadableDatabase();
 
         String id = uri.getLastPathSegment();
 
@@ -148,9 +148,9 @@ public class ArrendaContentProvider extends ContentProvider {
             case  SELLER:
                 return new DbTableSeller(db).query(projection, selection, selectionArgs, null, null, sortOrder);
             case  HOUSE_ID:
-                return new DbTableHouse(db).query(projection, DbTableHouse._ID + "=?", new String[] { id }, null, null, null);
+                return new DbTableHouse(db).query(projection, DbTableHouse._ID+ "=?", new String[] { id }, null, null, null);
             case  SELLER_ID:
-                return new DbTableSeller(db).query(projection, DbTableSeller._ID + "=?", new String[] { id }, null, null, null);
+                return new DbTableSeller(db).query(projection, DbTableSeller._ID+ "=?", new String[] { id }, null, null, null);
 
             default:
                 throw new UnsupportedOperationException("Invalid URI: " + uri);
@@ -211,11 +211,12 @@ public class ArrendaContentProvider extends ContentProvider {
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
-        SQLiteDatabase db = openHelper.getWritableDatabase();
+        SQLiteDatabase db = feedOpenHelper.getWritableDatabase();
 
         UriMatcher matcher = getUriMarcher();
 
         long id = -1;
+
 
         switch (matcher.match(uri)) {
             case HOUSE:
@@ -265,7 +266,7 @@ public class ArrendaContentProvider extends ContentProvider {
      */
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
-        SQLiteDatabase db = openHelper.getWritableDatabase();
+        SQLiteDatabase db = feedOpenHelper.getWritableDatabase();
 
         UriMatcher matcher = getUriMarcher();
 
@@ -312,7 +313,7 @@ public class ArrendaContentProvider extends ContentProvider {
      */
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
-        SQLiteDatabase db = openHelper.getWritableDatabase();
+        SQLiteDatabase db = feedOpenHelper.getWritableDatabase();
 
         UriMatcher matcher = getUriMarcher();
 

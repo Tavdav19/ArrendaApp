@@ -9,15 +9,15 @@ public class DbTableHouse implements BaseColumns {
     private SQLiteDatabase db;
     public static final String TABLE_HOUSE = "house";
 
-    private static final String FIELD_DESC = "description";
-    private static final String FIELD_LOC = "loc";
-    private static final String FIELD_PEOPLE = "people";
-    private static final String FIELD_BEDROOM = "bedroom";
-    private static final String FIELD_BATHROOM = "bathroom";
-    private static final String FIELD_WEEKPRICE= "weekPrice";
+    public static final String FIELD_DESC = "description";
+    public static final String FIELD_LOC = "loc";
+    public static final String FIELD_PEOPLE = "people";
+    public static final String FIELD_BEDROOM = "bedroom";
+    public static final String FIELD_BATHROOM = "bathroom";
+    public static final String FIELD_WEEKPRICE= "weekPrice";
     private static final String FIELD_ID_SELLER= "idSeller";
 
-    public static final String [] ALL_COLUMNS = new String[] { _ID, FIELD_DESC, FIELD_LOC, FIELD_PEOPLE, FIELD_BEDROOM, FIELD_BATHROOM, FIELD_WEEKPRICE, FIELD_ID_SELLER };
+    public static final String [] ALL_COLUMNS = new String[] {_ID, FIELD_DESC, FIELD_LOC, FIELD_PEOPLE, FIELD_BEDROOM, FIELD_BATHROOM, FIELD_WEEKPRICE, FIELD_ID_SELLER };
 
 
     public DbTableHouse (SQLiteDatabase db){
@@ -27,24 +27,25 @@ public class DbTableHouse implements BaseColumns {
     public void create(){
         db.execSQL(
                 "CREATE TABLE " + TABLE_HOUSE + "(" +
-                        _ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        FIELD_DESC + "TEXT NOT NULL," +
-                        FIELD_LOC + "TEXT NOT NULL," +
-                        FIELD_PEOPLE + "INTEGER," +
-                        FIELD_BEDROOM + "INTEGER," +
-                        FIELD_BATHROOM + "INTEGER," +
-                        FIELD_WEEKPRICE + "INTEGER," +
-                        FIELD_ID_SELLER + "INTEGER," +
+                        _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        FIELD_DESC + " TEXT NOT NULL," +
+                        FIELD_LOC + " TEXT NOT NULL," +
+                        FIELD_PEOPLE + " INTEGER," +
+                        FIELD_BEDROOM + " INTEGER," +
+                        FIELD_BATHROOM + " INTEGER," +
+                        FIELD_WEEKPRICE + " INTEGER," +
+                        FIELD_ID_SELLER + " INTEGER," +
 
                         "FOREIGN KEY (" + FIELD_ID_SELLER + ") REFERENCES " +
                             DbTableSeller.TABLE_SELLER +
-                                "(" + DbTableSeller._ID +")" +
+                                "(" + DbTableSeller._ID+")" +
                         ")"
         );
     }
     public static ContentValues getContentValues(House house) {
         ContentValues values = new ContentValues();
 
+        //values.put(_ID, house.getId());
         values.put(FIELD_DESC, house.getDescription());
         values.put(FIELD_LOC, house.getLoc());
         values.put(FIELD_PEOPLE, house.getPeople());

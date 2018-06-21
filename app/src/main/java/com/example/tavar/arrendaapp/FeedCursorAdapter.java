@@ -115,7 +115,7 @@ public class FeedCursorAdapter extends RecyclerView.Adapter<FeedCursorAdapter.Fe
         }
         public void setHouse(House house){
             textViewLoc.setText(house.getLoc());
-            textViewPrice.setText(String.format( "int" ,house.getWeekPrice())+ "€");
+            textViewPrice.setText(String.format( "%d" ,house.getWeekPrice())+ "€");
             houseId = house.getId();
         }
 

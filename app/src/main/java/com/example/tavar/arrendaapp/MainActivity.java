@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     private void editHouse(){
-        int id = (int) feedCursorAdapter.getLastHouseClicked();
+        int id = feedCursorAdapter.getLastHouseClicked();
 
         Intent intent = new Intent(this, ActivityEdit.class);
 

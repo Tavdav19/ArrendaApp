@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
 public class DbTableSeller implements BaseColumns {
     private SQLiteDatabase db;
     public static final String TABLE_SELLER = "seller";
-    private static final String FIELD_USER = "userName";
+    public static final String FIELD_USER = "userName";
 
     public DbTableSeller (SQLiteDatabase db){
         this.db = db;
@@ -19,19 +19,32 @@ public class DbTableSeller implements BaseColumns {
 
         db.execSQL(
                 "CREATE TABLE " + TABLE_SELLER + "(" +
-                    _ID + "INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    FIELD_USER + "TEXT NOT NULL" +
+                    _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    FIELD_USER + " TEXT NOT NULL" +
                     ")"
         );
     }
     public static ContentValues getContentValues(Seller seller) {
         ContentValues values = new ContentValues();
 
-        values.put(_ID, seller.getId());
+        //values.put(_ID, seller.getId());
         values.put(FIELD_USER, seller.getUserName());
 
         return values;
     }
+
+    public static Seller getCurrentSellerFromCursor(Cursor cursor) {
+        final int posId = cursor.getColumnIndex(_ID);
+        final int posName = cursor.getColumnIndex(FIELD_USER);
+
+        Seller seller = new Seller();
+
+        seller.setId(cursor.getInt(posId));
+        seller.setUserName(cursor.getString(posName));
+
+        return seller;
+    }
+
     /**
      * Convenience method for inserting a row into the categories table.
      *

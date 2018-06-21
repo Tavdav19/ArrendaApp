@@ -36,15 +36,19 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <provider
-            android:authorities="com.example.tavar.arrendaapp"
             android:name=".ArrendaContentProvider"
-            android:exported="false"
-            />
+            android:authorities="com.example.tavar.arrendaapp"
+            android:exported="false" />
 
         <activity
             android:name=".ActivityEdit"
             android:label="@string/title_activity__edit"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.tavar.arrendaapp.MainActivity" />
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"></activity>

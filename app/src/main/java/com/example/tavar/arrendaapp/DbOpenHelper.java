@@ -22,6 +22,9 @@ public class DbOpenHelper extends SQLiteOpenHelper {
         DbTableHouse dbTableHouse = new DbTableHouse(db);
         dbTableHouse.create();
 
+        DbTableSeller dbTableSeller = new DbTableSeller(db);
+        dbTableSeller.create();
+
         if(!PRODUCTION){
             seed(db);
         }
