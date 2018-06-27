@@ -25,7 +25,7 @@ public class DbTableSeller implements BaseColumns {
                 "CREATE TABLE " + TABLE_SELLER + "(" +
                     _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     FIELD_USER + " TEXT NOT NULL," +
-                        FIELD_PASSWORD + " TEXT NOT NULL" +
+                        FIELD_PASSWORD + " TEXT" +
                     ")"
         );
     }

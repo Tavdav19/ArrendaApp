@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ArrendaApp</string>
     <string name="action_settings">Settings</string>
+    <string name="action_edit">Edit</string>
     <string name="title_activity_feed">FeedActivity</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_chat">ChatActivity</string>

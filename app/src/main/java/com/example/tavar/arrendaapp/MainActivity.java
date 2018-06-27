@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private static final int HOUSE_CURSOR_LOARDER_ID = 0;
 
-    private FeedCursorAdapter feedCursorAdapter;
+    public FeedCursorAdapter feedCursorAdapter;
     private RecyclerView recyclerViewFeed;
 
     @Override
@@ -44,17 +45,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         feedCursorAdapter.setViewHolderClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editHouse();
+                viewHouse();
             }
         });
 
         getSupportLoaderManager().initLoader(HOUSE_CURSOR_LOARDER_ID,null,  this);
     }
 
-    private void editHouse(){
+    private void viewHouse(){
         int id = feedCursorAdapter.getLastHouseClicked();
 
-        Intent intent = new Intent(this, ActivityEdit.class);
+        Intent intent = new Intent(this, HouseActivity.class);
 
         intent.putExtra("HOUSE_ID", id);
 
@@ -126,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
      * them to you through new calls here.  You should not monitor the
      * data yourself.  For example, if the data is a {@link Cursor}
      * and you place it in a {@link CursorAdapter}, use
-     * the {@link CursorAdapter#CursorAdapter(Context, * Cursor, int)} constructor <em>without</em> passing
+     * the  constructor <em>without</em> passing
      * in either {@link CursorAdapter#FLAG_AUTO_REQUERY}
      * or {@link CursorAdapter#FLAG_REGISTER_CONTENT_OBSERVER}
      * (that is, use 0 for the flags argument).  This prevents the CursorAdapter
