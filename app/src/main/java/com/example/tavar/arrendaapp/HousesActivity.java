@@ -1,103 +1,131 @@
 package com.example.tavar.arrendaapp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CursorAdapter;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ActivityEdit extends AppCompatActivity implements android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor>{
-    private EditText editTextDesc;
-    private EditText editTextLoc;
-    private TextView textViewUserName;
-   // private Spinner spinnerPeople;
-  //  private Spinner spinnerBedroom;
-   // private Spinner spinnerBathroom;
-
+public class HousesActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private House house;
+    public static final String HOUSE_ID = "HOUSE_ID";
     private static final int SELLER_CURSOR_LOADER_ID = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit);
+        setContentView(R.layout.activity_houses);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
         Intent intent = getIntent();
 
-        int houseId =intent.getIntExtra(HousesActivity.HOUSE_ID, -1);
+        int houseId = intent.getIntExtra(MainActivity.HOUSE_ID, -1);
 
-        if(houseId == -1){
+        if (houseId == -1) {
             finish();
             return;
         }
-
         Cursor cursorHouse = getContentResolver().query(
-                Uri.withAppendedPath(ArrendaContentProvider.HOUSE_URI, Integer.toString(houseId)),DbTableHouse.ALL_COLUMNS,null,null,null);
+                Uri.withAppendedPath(ArrendaContentProvider.HOUSE_URI, Integer.toString(houseId)),
+                DbTableHouse.ALL_COLUMNS,
+                null,
+                null,
+                null
+        );
+            if (!cursorHouse.moveToNext()) {
+                Toast.makeText(this, "Not found", Toast.LENGTH_LONG).show();
+                finish();
+                return;
+            }
 
-        if(!cursorHouse.moveToNext()){
-            Toast.makeText(this, "Not found", Toast.LENGTH_LONG).show();
-            finish();
-            return;
-        }
 
-        editTextDesc = (EditText) findViewById(R.id.editTextDesc);
-        editTextLoc = (EditText) findViewById(R.id.editTextLoc);
-        textViewUserName = (TextView) findViewById(R.id.textViewUserName);
-       // spinnerPeople= (Spinner) findViewById(R.id.spinnerPeople);
-       // spinnerBedroom =(Spinner) findViewById(R.id.spinnerBedroom);
-      //  spinnerBathroom = (Spinner) findViewById(R.id.spinnerBathroom);
+
+
+
+        TextView textViewDesc = (TextView) findViewById(R.id.textViewDesc);
+        TextView textViewLoc = (TextView) findViewById(R.id.textViewLoc);
+        TextView textViewUserName = (TextView) findViewById(R.id.textViewUserName);
+        TextView textViewPrice = (TextView) findViewById(R.id.textViewPrice);
+        TextView textViewPeople = (TextView) findViewById(R.id.textViewPeople);
+        TextView textViewBedroom = (TextView) findViewById(R.id.textViewBedroom);
+        TextView textViewBathroom = (TextView) findViewById(R.id.textViewBathroom);
 
         house = DbTableHouse.getCurrentHouseFromCursor(cursorHouse);
 
-        editTextDesc.setText(house.getDescription());
-        editTextLoc.setText(house.getLoc());
-        textViewUserName.setText(house.getIdSeller());
+        textViewDesc.setText(String.valueOf(house.getDescription()));
+        textViewLoc.setText(String.valueOf(house.getLoc()));
+        textViewUserName.setText(String.valueOf(house.getIdSeller()));
+        textViewPrice.setText(String.valueOf(house.getWeekPrice()));
+        textViewPeople.setText(String.valueOf(house.getPeople()));
+        textViewBedroom.setText(String.valueOf(house.getBedroom()));
+        textViewBathroom.setText(String.valueOf(house.getBathroom()));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getSupportLoaderManager().initLoader(SELLER_CURSOR_LOADER_ID, null, this);
     }
     @Override
-    protected void onResume() {
-        super.onResume();
-        getSupportLoaderManager().restartLoader(SELLER_CURSOR_LOADER_ID, null,null);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_houses, menu);
+        return true;
     }
 
-    public void save(View view) {
-        // todo: validations
-
-        house.setDescription(editTextDesc.getText().toString());
-        house.setLoc(editTextLoc.getText().toString());
-       // house.setPeople((int) spinnerPeople.getSelectedItemId());
-      //  house.setBedroom((int) spinnerBedroom.getSelectedItemId());
-      //  house.setBathroom((int) spinnerBathroom.getSelectedItemId());
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
 
-        int recordsAffected = getContentResolver().update(
-                Uri.withAppendedPath(ArrendaContentProvider.HOUSE_URI, Integer.toString(house.getId())),
-                DbTableHouse.getContentValues(house),
-                null,
-                null
-        );
-
-        if (recordsAffected > 0) {
-            Toast.makeText(this, "success", Toast.LENGTH_LONG).show();
-            finish();
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }else if(id == R.id.action_edit){
+            Intent intent = new Intent (this,ActivityEdit.class);
+            intent.putExtra(HOUSE_ID, id);
+            startActivity(intent);
         }
 
-        Toast.makeText(this, "Could not save", Toast.LENGTH_LONG).show();
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    /**
+     * Returns a new instance of this fragment for the given section
+     * number.
+     */
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getSupportLoaderManager().restartLoader(SELLER_CURSOR_LOADER_ID, null, this);
     }
 
     /**
@@ -105,15 +133,17 @@ public class ActivityEdit extends AppCompatActivity implements android.support.v
      * <p>
      * <p>This will always be called from the process's main thread.
      *
-     * @param args Any arguments supplied by the caller.
      * @param id   The ID whose loader is to be created.
+     * @param args Any arguments supplied by the caller.
      * @return Return a new Loader instance that is ready to start loading.
      */
+    @NonNull
     @Override
-    public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
+    public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
         if (id == SELLER_CURSOR_LOADER_ID) {
-            return  new CursorLoader(this, ArrendaContentProvider.SELLER_URI, DbTableSeller.ALL_COLUMNS,null,null,null);
+            return new CursorLoader(this, ArrendaContentProvider.SELLER_URI, DbTableSeller.ALL_COLUMNS, null, null, null);
         }
+
         return null;
     }
 
@@ -158,7 +188,7 @@ public class ActivityEdit extends AppCompatActivity implements android.support.v
      * @param data   The data generated by the Loader.
      */
     @Override
-    public void onLoadFinished(@NonNull android.support.v4.content.Loader<Cursor> loader, Cursor data) {
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
 
     }
 
@@ -172,7 +202,12 @@ public class ActivityEdit extends AppCompatActivity implements android.support.v
      * @param loader The Loader that is being reset.
      */
     @Override
-    public void onLoaderReset(@NonNull android.support.v4.content.Loader<Cursor> loader) {
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
 
     }
+
+    /**
+     * A placeholder fragment containing a simple view.
+     */
 }
+

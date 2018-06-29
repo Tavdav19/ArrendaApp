@@ -72,6 +72,14 @@ public class ArrendaDbTest {
         Cursor cursor = tableSeller.query(DbTableSeller.ALL_COLUMNS,null,null,null,null,null);
         assertEquals("Seller after delete?",0,cursor.getCount());
     }
+    private long insertSeller(DbTableSeller tableSeller, Seller seller){
+        long id = tableSeller.insert(
+                DbTableSeller.getContentValues(seller)
+        );
+        assertNotEquals("Fail... Insert Seller",-1,id);
+
+        return id;
+    }
 
     @NonNull
     private Seller ReadFirstSeller(DbTableSeller tableSeller, String expectedUserName, long expectedId, String expectedPassword) {
@@ -171,14 +179,7 @@ public class ArrendaDbTest {
 
     }
 
-    private long insertSeller(DbTableSeller tableSeller, Seller seller){
-        long id = tableSeller.insert(
-                DbTableSeller.getContentValues(seller)
-        );
-        assertNotEquals("Fail... Insert Seller",-1,id);
 
-        return id;
-    }
 
     private Context getContext(){
         return InstrumentationRegistry.getTargetContext();

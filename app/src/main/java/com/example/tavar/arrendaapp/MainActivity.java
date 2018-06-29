@@ -22,6 +22,7 @@ import android.widget.CursorAdapter;
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
     private static final int HOUSE_CURSOR_LOARDER_ID = 0;
+    public static final String HOUSE_ID = "HOUSE_ID";
 
     public FeedCursorAdapter feedCursorAdapter;
     private RecyclerView recyclerViewFeed;
@@ -55,9 +56,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private void viewHouse(){
         int id = feedCursorAdapter.getLastHouseClicked();
 
-        Intent intent = new Intent(this, HouseActivity.class);
+        Intent intent = new Intent(this, HousesActivity.class);
 
-        intent.putExtra("HOUSE_ID", id);
+        intent.putExtra(HOUSE_ID, id);
 
         startActivity(intent);
     }
