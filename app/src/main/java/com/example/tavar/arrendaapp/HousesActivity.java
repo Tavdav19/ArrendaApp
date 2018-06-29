@@ -14,6 +14,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.EventLogTags;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +28,15 @@ public class HousesActivity extends AppCompatActivity implements LoaderManager.L
     private House house;
     public static final String HOUSE_ID = "HOUSE_ID";
     private static final int SELLER_CURSOR_LOADER_ID = 0;
+    public FeedCursorAdapter feedCursorAdapter;
+
+    public TextView textViewDesc;
+    public TextView textViewLoc;
+    public TextView textViewUserName;
+    public TextView textViewPrice;
+    public TextView textViewPeople;
+    public TextView textViewBedroom;
+    public TextView textViewBathroom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,14 +76,13 @@ public class HousesActivity extends AppCompatActivity implements LoaderManager.L
 
 
 
-
-        TextView textViewDesc = (TextView) findViewById(R.id.textViewDesc);
-        TextView textViewLoc = (TextView) findViewById(R.id.textViewLoc);
-        TextView textViewUserName = (TextView) findViewById(R.id.textViewUserName);
-        TextView textViewPrice = (TextView) findViewById(R.id.textViewPrice);
-        TextView textViewPeople = (TextView) findViewById(R.id.textViewPeople);
-        TextView textViewBedroom = (TextView) findViewById(R.id.textViewBedroom);
-        TextView textViewBathroom = (TextView) findViewById(R.id.textViewBathroom);
+        textViewDesc = (TextView) findViewById(R.id.textViewDesc);
+        textViewLoc = (TextView) findViewById(R.id.textViewLoc);
+        textViewUserName = (TextView) findViewById(R.id.textViewUserName);
+        textViewPrice = (TextView) findViewById(R.id.textViewPrice);
+        textViewPeople = (TextView) findViewById(R.id.textViewPeople);
+        textViewBedroom = (TextView) findViewById(R.id.textViewBedroom);
+        textViewBathroom = (TextView) findViewById(R.id.textViewBathroom);
 
         house = DbTableHouse.getCurrentHouseFromCursor(cursorHouse);
 
@@ -108,8 +117,12 @@ public class HousesActivity extends AppCompatActivity implements LoaderManager.L
         if (id == R.id.action_settings) {
             return true;
         }else if(id == R.id.action_edit){
+            int ids = feedCursorAdapter.getLastHouseClicked();
+
             Intent intent = new Intent (this,ActivityEdit.class);
-            intent.putExtra(HOUSE_ID, id);
+
+            intent.putExtra(HOUSE_ID, ids);
+
             startActivity(intent);
         }
 
@@ -210,4 +223,3 @@ public class HousesActivity extends AppCompatActivity implements LoaderManager.L
      * A placeholder fragment containing a simple view.
      */
 }
-
