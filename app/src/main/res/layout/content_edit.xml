@@ -39,7 +39,7 @@
                 android:layout_marginRight="123dp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toTopOf="@+id/imageButton00"
-                app:layout_constraintEnd_toStartOf="@+id/textView3"
+                app:layout_constraintEnd_toStartOf="@+id/textView7"
                 app:layout_constraintStart_toStartOf="@+id/imageViewPerfil"
                 tools:text="Zé vende" />
 
@@ -54,7 +54,9 @@
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@mipmap/ic_launcher"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="12dp" />
 
             <ImageButton
                 android:id="@+id/imageButton22"
@@ -68,12 +70,11 @@
                 android:id="@+id/textInputLayoutTitleLoc"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
                 app:layout_constraintBottom_toTopOf="@+id/textViewUserName"
                 app:layout_constraintEnd_toEndOf="@+id/imageViewPerfil"
                 app:layout_constraintStart_toStartOf="@+id/imageViewPerfil"
@@ -82,13 +83,13 @@
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/editTextLoc"
                     android:layout_width="match_parent"
-                    android:layout_height="23dp"
+                    android:layout_height="match_parent"
                     android:hint="Loc"
                     android:inputType="textAutoComplete"
                     android:selectAllOnFocus="false"
                     android:singleLine="false"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -272,7 +273,8 @@
                 app:layout_constraintEnd_toEndOf="@+id/textViewDesc"
                 app:layout_constraintStart_toEndOf="@+id/imageIconBed"
                 app:layout_constraintTop_toTopOf="@+id/imageIconBed"
-                app:srcCompat="@drawable/bathroom" />
+                app:srcCompat="@drawable/bathroom"
+                android:layout_marginRight="8dp" />
 
             <Button
                 android:id="@+id/UploadProfile"

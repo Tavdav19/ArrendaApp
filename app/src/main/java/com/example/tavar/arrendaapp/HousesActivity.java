@@ -89,7 +89,7 @@ public class HousesActivity extends AppCompatActivity implements LoaderManager.L
         textViewDesc.setText(String.valueOf(house.getDescription()));
         textViewLoc.setText(String.valueOf(house.getLoc()));
         textViewUserName.setText(String.valueOf(house.getIdSeller()));
-        textViewPrice.setText(String.valueOf(house.getWeekPrice()));
+        textViewPrice.setText(String.valueOf(house.getWeekPrice())+("€"));
         textViewPeople.setText(String.valueOf(house.getPeople()));
         textViewBedroom.setText(String.valueOf(house.getBedroom()));
         textViewBathroom.setText(String.valueOf(house.getBathroom()));
@@ -117,7 +117,7 @@ public class HousesActivity extends AppCompatActivity implements LoaderManager.L
         if (id == R.id.action_settings) {
             return true;
         }else if(id == R.id.action_edit){
-            int ids = feedCursorAdapter.getLastHouseClicked();
+            int ids = house.getId();
 
             Intent intent = new Intent (this,ActivityEdit.class);
 
