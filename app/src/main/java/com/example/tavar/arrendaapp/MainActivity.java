@@ -5,11 +5,14 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +21,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CursorAdapter;
+import android.widget.Toast;
+
+import java.io.File;
+
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
@@ -30,11 +37,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        createFolder("ArrendaApp");
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
 
         recyclerViewFeed = (RecyclerView) findViewById(R.id.recyclerViewFeed);
@@ -51,7 +57,27 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         });
 
         getSupportLoaderManager().initLoader(HOUSE_CURSOR_LOARDER_ID,null,  this);
+
+
     }
+    public void createFolder(String fname){
+            String myfolder=getFilesDir()+"/"+fname;
+            File f=new File(myfolder);
+            if(!f.exists())
+                if(!f.mkdir()){
+                    Toast.makeText(this, myfolder+" can't be created.", Toast.LENGTH_SHORT).show();
+
+                }
+                else
+                    Toast.makeText(this, myfolder+" can be created.", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(this, myfolder+" already exits.", Toast.LENGTH_SHORT).show();
+        }
+
+
+
+
+
 
     private void viewHouse(){
         int id = feedCursorAdapter.getLastHouseClicked();

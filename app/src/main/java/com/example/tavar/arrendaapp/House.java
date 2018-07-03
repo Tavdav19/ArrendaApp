@@ -9,7 +9,15 @@ public class House {
     private int bedroom;
     private int Bathroom;
     private int weekPrice;
+    private String imageHouse;
 
+    public String getImageHouse() {
+        return imageHouse;
+    }
+
+    public void setImageHouse(String imageHouse) {
+        this.imageHouse = imageHouse;
+    }
 
     public int getId() {
         return id;

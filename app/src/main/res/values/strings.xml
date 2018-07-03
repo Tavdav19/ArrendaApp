@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="action_edit">Edit</string>
     <string name="title_activity_feed">FeedActivity</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">ArrendaApp</string>
     <string name="title_activity_chat">ChatActivity</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="large_text">
@@ -118,4 +118,5 @@
         completions."
     </string>
     <string name="title_activity_houses">HousesActivity</string>
+    <string name="menu_refresh">menu_refresh</string>
 </resources>

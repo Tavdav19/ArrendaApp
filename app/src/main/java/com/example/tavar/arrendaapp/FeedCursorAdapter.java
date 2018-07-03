@@ -2,13 +2,17 @@ package com.example.tavar.arrendaapp;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 public class FeedCursorAdapter extends RecyclerView.Adapter<FeedCursorAdapter.FeedViewHolder> {
     private Context context;
@@ -35,7 +39,7 @@ public class FeedCursorAdapter extends RecyclerView.Adapter<FeedCursorAdapter.Fe
     }
 
     /**
-     * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
+     * Called when RecyclerView needs a new {@link RecyclerView.ViewHolder} of the given type to represent
      * an item.
      * <p>
      * This new ViewHolder should be constructed with a new View that can represent the items
@@ -43,7 +47,7 @@ public class FeedCursorAdapter extends RecyclerView.Adapter<FeedCursorAdapter.Fe
      * layout file.
      * <p>
      * The new ViewHolder will be used to display items of the adapter using
-     * {@link #onBindViewHolder(ViewHolder, int, List)}. Since it will be re-used to display
+     * . Since it will be re-used to display
      * different items in the data set, it is a good idea to cache references to sub views of
      * the View to avoid unnecessary {@link View#findViewById(int)} calls.
      *
@@ -52,7 +56,6 @@ public class FeedCursorAdapter extends RecyclerView.Adapter<FeedCursorAdapter.Fe
      * @param viewType The view type of the new View.
      * @return A new ViewHolder that holds a View of the given view type.
      * @see #getItemViewType(int)
-     * @see #onBindViewHolder(ViewHolder, int)
      */
     @NonNull
     @Override
@@ -103,6 +106,7 @@ public class FeedCursorAdapter extends RecyclerView.Adapter<FeedCursorAdapter.Fe
     public class FeedViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener {
         private TextView textViewLoc;
         private TextView textViewPrice;
+        //private ImageView imageViewHouse;
         private int houseId;
 
         public FeedViewHolder(View itemView){
@@ -110,12 +114,14 @@ public class FeedCursorAdapter extends RecyclerView.Adapter<FeedCursorAdapter.Fe
 
             textViewLoc = (TextView) itemView.findViewById(R.id.textViewLoc);
             textViewPrice = (TextView) itemView.findViewById(R.id.textViewPrice);
+            //imageViewHouse = (ImageView) itemView.findViewById(R.id.imageHouse);
 
             itemView.setOnClickListener(this);
         }
         public void setHouse(House house){
             textViewLoc.setText(house.getLoc());
             textViewPrice.setText(String.format( "%d" ,house.getWeekPrice())+ "€");
+            //imageViewHouse.setImageURI(Uri.parse(house.getImageHouse()));
             houseId = house.getId();
         }
 

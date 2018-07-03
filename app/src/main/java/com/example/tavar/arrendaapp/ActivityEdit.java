@@ -1,6 +1,7 @@
 package com.example.tavar.arrendaapp;
 
 
+import android.app.Activity;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,6 +16,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.ActionMode;
 import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
@@ -25,6 +27,7 @@ import android.widget.Toast;
 
 public class ActivityEdit extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private House house;
+    public static final String HOUSE_ID = "HOUSE_ID";
     private static final int SELLER_CURSOR_LOADER_ID = 0;
     public EditText editTextDesc;
     public EditText editTextLoc;
@@ -44,8 +47,8 @@ public class ActivityEdit extends AppCompatActivity implements LoaderManager.Loa
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                save(view);
+
             }
         });
         Intent intent = getIntent();
@@ -87,7 +90,7 @@ public class ActivityEdit extends AppCompatActivity implements LoaderManager.Loa
         getSupportLoaderManager().initLoader(SELLER_CURSOR_LOADER_ID,null,this);
     }
 
-    public void save (View view){
+    public void save (View view) {
         //todo: Validations
 
         house.setDescription(editTextDesc.getText().toString());
@@ -103,11 +106,11 @@ public class ActivityEdit extends AppCompatActivity implements LoaderManager.Loa
                 null
         );
 
-        if(recordsAffected > 0){
-            Toast.makeText(this, "Saved",Toast.LENGTH_LONG).show();
+        if (recordsAffected > 0) {
+            Toast.makeText(this, "Saved", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Could not save", Toast.LENGTH_LONG).show();
         }
-
-        Toast.makeText(this, "Could not save", Toast.LENGTH_LONG).show();
     }
     /**
      * Instantiate and return a new Loader for the given ID.

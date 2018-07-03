@@ -37,7 +37,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/imageHouse"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"
                 android:scaleType="fitCenter"
@@ -55,7 +55,7 @@
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+                app:layout_constraintTop_toBottomOf="@+id/imageHouse" />
 
             <TextView
                 android:id="@+id/textViewPrice"

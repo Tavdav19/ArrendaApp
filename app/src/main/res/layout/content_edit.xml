@@ -55,8 +55,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@mipmap/ic_launcher"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="12dp" />
+                android:layout_marginLeft="8dp" />
 
             <ImageButton
                 android:id="@+id/imageButton22"
@@ -95,36 +94,34 @@
 
             <Spinner
                 android:id="@+id/spinnerPeople"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_weight="1"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton01"
-                app:layout_constraintEnd_toEndOf="@+id/imageIconPpl"
-                app:layout_constraintStart_toStartOf="@+id/imageIconPpl"
-                app:layout_constraintTop_toBottomOf="@+id/imageIconPpl" />
+                android:spinnerMode="dialog"
+                app:layout_constraintBottom_toBottomOf="@+id/spinnerBathroom"
+                app:layout_constraintEnd_toStartOf="@+id/spinnerBedroom"
+                app:layout_constraintTop_toBottomOf="@+id/imageIconPpl"
+                app:layout_constraintVertical_bias="1.0" />
 
             <Spinner
                 android:id="@+id/spinnerBedroom"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton02"
+                android:spinnerMode="dialog"
                 app:layout_constraintEnd_toEndOf="@+id/imageIconBed"
                 app:layout_constraintStart_toStartOf="@+id/imageIconBed"
-                app:layout_constraintTop_toBottomOf="@+id/imageIconBed" />
+                tools:layout_editor_absoluteY="200dp" />
 
             <Spinner
                 android:id="@+id/spinnerBathroom"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton02"
-                app:layout_constraintEnd_toEndOf="@+id/imageIconBath"
-                app:layout_constraintStart_toStartOf="@+id/imageIconBath"
+                android:spinnerMode="dialog"
+                app:layout_constraintStart_toEndOf="@+id/spinnerBedroom"
                 app:layout_constraintTop_toBottomOf="@+id/imageIconBath" />
 
             <TextView
@@ -273,8 +270,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/textViewDesc"
                 app:layout_constraintStart_toEndOf="@+id/imageIconBed"
                 app:layout_constraintTop_toTopOf="@+id/imageIconBed"
-                app:srcCompat="@drawable/bathroom"
-                android:layout_marginRight="8dp" />
+                app:srcCompat="@drawable/bathroom" />
 
             <Button
                 android:id="@+id/UploadProfile"

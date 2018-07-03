@@ -48,6 +48,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
             house.setBedroom(1);
             house.setBathroom(1);
             house.setWeekPrice(300);
+            //house.setImageHouse("/storage/sdcard0/Pictures/ArrendaApp/Images"+"/"+house.getId());
             dbTableHouse.insert(DbTableHouse.getContentValues(house));
 
         house = new House();

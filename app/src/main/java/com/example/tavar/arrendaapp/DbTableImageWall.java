@@ -5,84 +5,74 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 
-public class DbTableHouse implements BaseColumns {
+public class DbTableImageWall implements BaseColumns {
     private SQLiteDatabase db;
-    public static final String TABLE_HOUSE = "house";
+    public static final String TABLE_IMAGEWALL = "imagewall";
+    public static final String FIELD_ID_HOUSE = "idhouse"
 
-    public static final String FIELD_DESC = "description";
-    public static final String FIELD_LOC = "loc";
-    public static final String FIELD_PEOPLE = "people";
-    public static final String FIELD_BEDROOM = "bedroom";
-    public static final String FIELD_BATHROOM = "bathroom";
-    public static final String FIELD_WEEKPRICE= "weekPrice";
-    private static final String FIELD_ID_SELLER= "idSeller";
-    private static final String IMAGE_HOUSE= "imageHouse";
+    public static final String FIELD_00 = "img00";
+    public static final String FIELD_01 = "img01";
+    public static final String FIELD_02 = "img02";
 
-    public static final String [] ALL_COLUMNS = new String[] {_ID, FIELD_DESC, FIELD_LOC, FIELD_PEOPLE, FIELD_BEDROOM, FIELD_BATHROOM, FIELD_WEEKPRICE, FIELD_ID_SELLER };
+    public static final String FIELD_10 = "img10";
+    public static final String FIELD_11 = "img11";
+    public static final String FIELD_12 = "img12";
+
+    public static final String FIELD_20 = "img20";
+    public static final String FIELD_21 = "img21";
+    public static final String FIELD_22 = "img22";
+
+    public static final String [] ALL_COLUMNS = new String[] {_ID, FIELD_ID_HOUSE, FIELD_00, FIELD_01, FIELD_02, FIELD_10, FIELD_11, FIELD_12, FIELD_20, FIELD_21, FIELD_22};
 
 
-    public DbTableHouse (SQLiteDatabase db){
+    public DbTableImageWall(SQLiteDatabase db){
         this.db = db;
     }
 
-    public void create(){
-        db.execSQL(
-                "CREATE TABLE " + TABLE_HOUSE + "(" +
-                        _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                        FIELD_DESC + " TEXT NOT NULL," +
-                        FIELD_LOC + " TEXT NOT NULL," +
-                        FIELD_PEOPLE + " INTEGER," +
-                        FIELD_BEDROOM + " INTEGER," +
-                        FIELD_BATHROOM + " INTEGER," +
-                        FIELD_WEEKPRICE + " INTEGER," +
-                        IMAGE_HOUSE     + " TEXT," +
-                        FIELD_ID_SELLER + " INTEGER," +
 
-                        "FOREIGN KEY (" + FIELD_ID_SELLER + ") REFERENCES " +
-                            DbTableSeller.TABLE_SELLER +
-                                "(" + DbTableSeller._ID+")" +
+    public void create(){
+
+        db.execSQL(
+                "CREATE TABLE " + TABLE_IMAGEWALL + "(" +
+                        _ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        FIELD_00 + " TEXT," +
+                        FIELD_01 + " TEXT," +
+                        FIELD_02 + " TEXT," +
+
+                        FIELD_10 + " TEXT," +
+                        FIELD_11 + " TEXT," +
+                        FIELD_12 + " TEXT," +
+
+                        FIELD_20 + " TEXT," +
+                        FIELD_21 + " TEXT," +
+                        FIELD_22 + " TEXT," +
+
+                        "FOREIGN KEY (" + FIELD_ID_HOUSE + ") REFERENCES " +
+                        DbTableHouse.TABLE_HOUSE +
+                        "(" + DbTableHouse._ID+")" +
                         ")"
         );
     }
-    public static ContentValues getContentValues(House house) {
+    public static ContentValues getContentValues(Seller seller) {
         ContentValues values = new ContentValues();
 
-        //values.put(_ID, house.getId());
-        values.put(FIELD_DESC, house.getDescription());
-        values.put(FIELD_LOC, house.getLoc());
-        values.put(FIELD_PEOPLE, house.getPeople());
-        values.put(FIELD_BEDROOM, house.getBedroom());
-        values.put(FIELD_BATHROOM, house.getBathroom());
-        values.put(FIELD_WEEKPRICE, house.getWeekPrice());
-        values.put(FIELD_ID_SELLER, house.getIdSeller());
+        //values.put(_ID, seller.getId());
+        values.put(FIELD_USER, seller.getUserName());
 
         return values;
     }
 
-    public static House getCurrentHouseFromCursor(Cursor cursor) {
+    public static Seller getCurrentSellerFromCursor(Cursor cursor) {
         final int posId = cursor.getColumnIndex(_ID);
-        final int posDesc = cursor.getColumnIndex(FIELD_DESC);
-        final int posLoc = cursor.getColumnIndex(FIELD_LOC);
-        final int posPeople = cursor.getColumnIndex(FIELD_PEOPLE);
-        final int posBedroom = cursor.getColumnIndex(FIELD_BEDROOM);
-        final int posBathroom = cursor.getColumnIndex(FIELD_BATHROOM);
-        final int posWeekPrice = cursor.getColumnIndex(FIELD_WEEKPRICE);
-        final int posIdSeller = cursor.getColumnIndex(FIELD_ID_SELLER);
+        final int posName = cursor.getColumnIndex(FIELD_USER);
 
-        House house = new House();
+        Seller seller = new Seller();
 
-        house.setId(cursor.getInt(posId));
-        house.setDescription(cursor.getString(posDesc));
-        house.setLoc(cursor.getString(posLoc));
-        house.setPeople(cursor.getInt(posPeople));
-        house.setBedroom(cursor.getInt(posBedroom));
-        house.setBathroom(cursor.getInt(posBathroom));
-        house.setWeekPrice(cursor.getInt(posWeekPrice));
-        house.setIdSeller(cursor.getInt(posIdSeller));
+        seller.setId(cursor.getInt(posId));
+        seller.setUserName(cursor.getString(posName));
 
-        return house;
+        return seller;
     }
-
 
     /**
      * Convenience method for inserting a row into the categories table.
@@ -93,7 +83,7 @@ public class DbTableHouse implements BaseColumns {
      * @return the row ID of the newly inserted row, or -1 if an error occurred
      */
     public long insert(ContentValues values) {
-        return db.insert(TABLE_HOUSE, null, values);
+        return db.insert(TABLE_SELLER, null, values);
     }
 
     /**
@@ -109,7 +99,7 @@ public class DbTableHouse implements BaseColumns {
      * @return the number of rows affected
      */
     public int update(ContentValues values, String whereClause, String[] whereArgs) {
-        return db.update(TABLE_HOUSE, values, whereClause, whereArgs);
+        return db.update(TABLE_SELLER, values, whereClause, whereArgs);
     }
 
     /**
@@ -125,7 +115,7 @@ public class DbTableHouse implements BaseColumns {
      *         whereClause.
      */
     public int delete(String whereClause, String[] whereArgs) {
-        return db.delete(TABLE_HOUSE, whereClause, whereArgs);
+        return db.delete(TABLE_SELLER, whereClause, whereArgs);
     }
 
     /**
@@ -156,7 +146,7 @@ public class DbTableHouse implements BaseColumns {
      * @see Cursor
      */
     public Cursor query (String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy) {
-        Cursor cursor = db.query(TABLE_HOUSE, columns, selection, selectionArgs, groupBy, having, orderBy);
-        return cursor;
+        return db.query(TABLE_SELLER, columns, selection, selectionArgs, groupBy, having, orderBy);
     }
+
 }
