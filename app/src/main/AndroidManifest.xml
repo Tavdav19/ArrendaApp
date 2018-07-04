@@ -20,6 +20,7 @@
         <activity
             android:name=".ChatActivity"
             android:label="@string/title_activity_chat"
+            android:parentActivityName=".HousesActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
@@ -60,6 +61,7 @@
         <activity
             android:name=".CreateActivity"
             android:label="@string/title_activity_create"
+            android:parentActivityName=".HousesActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

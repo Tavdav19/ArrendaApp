@@ -48,8 +48,7 @@ public class HousesActivity extends AppCompatActivity implements LoaderManager.L
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startChat();
             }
         });
         Intent intent = getIntent();
@@ -97,6 +96,12 @@ public class HousesActivity extends AppCompatActivity implements LoaderManager.L
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getSupportLoaderManager().initLoader(SELLER_CURSOR_LOADER_ID, null, this);
+    }
+    private void startChat() {
+        int id = house.getId();
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra(HOUSE_ID, id);
+        startActivity(intent);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
