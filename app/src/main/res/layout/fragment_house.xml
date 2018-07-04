@@ -28,7 +28,8 @@
                 android:layout_height="120dp"
                 app:layout_constraintStart_toStartOf="@+id/imageButton10"
                 app:layout_constraintTop_toTopOf="@+id/imageButton21"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@mipmap/ic_launcher"
+                android:contentDescription="TODO" />
 
             <TextView
                 android:id="@+id/textViewUserName"
@@ -150,7 +151,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/imageIconBath"
                 app:layout_constraintStart_toEndOf="@+id/imageIconPpl"
                 app:layout_constraintTop_toBottomOf="@+id/imageViewPerfil"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@mipmap/ic_launcher"
+                android:contentDescription="TODO" />
 
             <TextView
                 android:id="@+id/textViewBathroom"
@@ -159,7 +161,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="4"
+                android:text="@string/_4"
                 app:layout_constraintBottom_toBottomOf="@+id/textViewBedroom"
                 app:layout_constraintEnd_toEndOf="@+id/imageIconBath"
                 app:layout_constraintStart_toStartOf="@+id/imageIconBath"
@@ -180,7 +182,8 @@
                 android:layout_height="120dp"
                 app:layout_constraintStart_toStartOf="@+id/imageButton00"
                 app:layout_constraintTop_toTopOf="@+id/imageButton11"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@mipmap/ic_launcher"
+                android:contentDescription="TODO" />
 
             <ImageView
                 android:id="@+id/imageIconPpl"
@@ -200,7 +203,8 @@
                 android:layout_height="120dp"
                 app:layout_constraintEnd_toEndOf="@+id/textViewDesc"
                 app:layout_constraintTop_toTopOf="@+id/imageButton11"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@mipmap/ic_launcher"
+                android:contentDescription="TODO" />
 
             <ImageButton
                 android:id="@+id/imageButton21"
@@ -226,7 +230,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/imageButton12"
                 app:layout_constraintStart_toEndOf="@+id/imageButton10"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton01"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@mipmap/ic_launcher"
+                android:contentDescription="TODO" />
 
             <ImageButton
                 android:id="@+id/imageButton00"
@@ -246,7 +251,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/imageButton02"
                 app:layout_constraintStart_toEndOf="@+id/imageButton00"
                 app:layout_constraintTop_toBottomOf="@+id/textViewBedroom"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@mipmap/ic_launcher"
+                android:contentDescription="TODO" />
 
             <ImageView
                 android:id="@+id/imageIconBath"
@@ -258,7 +264,8 @@
                 app:layout_constraintStart_toEndOf="@+id/imageIconBed"
                 app:layout_constraintTop_toTopOf="@+id/imageIconBed"
                 app:srcCompat="@mipmap/ic_launcher"
-                android:layout_marginRight="8dp" />
+                android:layout_marginRight="8dp"
+                android:contentDescription="TODO" />
         </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

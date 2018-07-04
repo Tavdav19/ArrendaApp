@@ -18,24 +18,39 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CreateActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+public class CreateActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     public static final String HOUSE_ID = "HOUSE_ID";
     private static final int HOUSE_CURSOR_LOARDER_ID = 0;
     public EditText editTextDescCreate;
     public EditText editTextLocCreate;
-    public TextView textViewUserName;
     public Spinner spinnerPeople;
     public Spinner spinnerBedroom;
     public Spinner spinnerBathroom;
     public Uri newUri;
     public House house;
+    public ImageView imageViewPerfil;
+    public ImageView imageButton00;
+    public ImageView imageButton01;
+    public ImageView imageButton02;
+
+    public ImageView imageButton10;
+    public ImageView imageButton11;
+    public ImageView imageButton12;
+
+    public ImageView imageButton20;
+    public ImageView imageButton21;
+    public ImageView imageButton22;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +63,10 @@ public class CreateActivity extends AppCompatActivity implements LoaderManager.L
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                create();
-                finish();
+               createAction();
             }
         });
-
+        intiButtons();
         Intent intent = getIntent();
 
         int houseId = intent.getIntExtra(HousesActivity.HOUSE_ID, -1);
@@ -76,10 +90,203 @@ public class CreateActivity extends AppCompatActivity implements LoaderManager.L
 
         editTextDescCreate = (EditText) findViewById(R.id.editTextDescCreate);
         editTextLocCreate = (EditText) findViewById(R.id.editTextLocCreate);
+        imageViewPerfil = (ImageView) findViewById(R.id.imageViewPerfil);
+        imageButton00 = (ImageView) findViewById(R.id.imageButton00);
+        imageButton01 = (ImageView) findViewById(R.id.imageButton01);
+        imageButton02 = (ImageView) findViewById(R.id.imageButton02);
+
+        imageButton10 = (ImageView) findViewById(R.id.imageButton10);
+        imageButton11 = (ImageView) findViewById(R.id.imageButton11);
+        imageButton12 = (ImageView) findViewById(R.id.imageButton12);
+
+        imageButton20 = (ImageView) findViewById(R.id.imageButton20);
+        imageButton21 = (ImageView) findViewById(R.id.imageButton21);
+        imageButton22 = (ImageView) findViewById(R.id.imageButton22);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        getSupportLoaderManager().initLoader(HOUSE_CURSOR_LOARDER_ID,null,  this);
+        getSupportLoaderManager().initLoader(HOUSE_CURSOR_LOARDER_ID, null, this);
     }
+    public void createAction(){
+        if(editTextDescCreate!=null&&editTextLocCreate!=null&&spinnerBathroom!=null
+            &&spinnerBedroom!=null&&spinnerBathroom!=null){
+        create();
+        finish();
+    }else{
+        Toast.makeText(this, "Complete all parameters please", Toast.LENGTH_LONG).show();
+    }
+
+}
+    private void intiButtons(){
+        Button uploadProfile = (Button) findViewById(R.id.uploadProfile) ;
+        uploadProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto , 0);
+            }
+        });
+
+        Button upload00 = (Button) findViewById(R.id.upload00) ;
+        upload00.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto , 1);
+            }
+        });
+
+        Button upload01 = (Button) findViewById(R.id.upload01) ;
+        upload01.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto , 2);
+            }
+        });
+
+        Button upload02 = (Button) findViewById(R.id.upload02) ;
+        upload02.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto , 3);
+            }
+        });
+
+        Button upload10 = (Button) findViewById(R.id.upload10) ;
+        upload10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto , 4);
+            }
+        });
+
+        Button upload11 = (Button) findViewById(R.id.upload11) ;
+        upload11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto , 5);
+            }
+        });
+
+        Button upload12 = (Button) findViewById(R.id.upload12) ;
+        upload12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto , 6);
+            }
+        });
+
+        Button upload20 = (Button) findViewById(R.id.upload20) ;
+        upload20.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto , 7);
+            }
+        });
+
+        Button upload21 = (Button) findViewById(R.id.upload21) ;
+        upload21.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto , 8);
+            }
+        });
+
+        Button upload22 = (Button) findViewById(R.id.upload22) ;
+        upload22.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(pickPhoto , 9);
+            }
+        });
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+            super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+            switch(requestCode) {
+                case 0:
+                    if(resultCode == RESULT_OK){
+                        Uri selectedImage = imageReturnedIntent.getData();
+                        imageViewPerfil.setImageURI(selectedImage);
+                    }
+                    break;
+                case 1:
+                    if(resultCode == RESULT_OK){
+                        Uri selectedImage = imageReturnedIntent.getData();
+                        imageButton00.setImageURI(selectedImage);
+                    }
+                    break;
+                case 2:
+                    if(resultCode == RESULT_OK){
+                        Uri selectedImage = imageReturnedIntent.getData();
+                        imageButton01.setImageURI(selectedImage);
+                    }
+                    break;
+                case 3:
+                    if(resultCode == RESULT_OK){
+                        Uri selectedImage = imageReturnedIntent.getData();
+                        imageButton02.setImageURI(selectedImage);
+                    }
+                    break;
+                case 4:
+                    if(resultCode == RESULT_OK){
+                        Uri selectedImage = imageReturnedIntent.getData();
+                        imageButton10.setImageURI(selectedImage);
+                    }
+                    break;
+                case 5:
+                    if(resultCode == RESULT_OK){
+                        Uri selectedImage = imageReturnedIntent.getData();
+                        imageButton11.setImageURI(selectedImage);
+                    }
+                    break;
+                case 6:
+                    if(resultCode == RESULT_OK){
+                        Uri selectedImage = imageReturnedIntent.getData();
+                        imageButton12.setImageURI(selectedImage);
+                    }
+                    break;
+                case 7:
+                    if(resultCode == RESULT_OK){
+                        Uri selectedImage = imageReturnedIntent.getData();
+                        imageButton20.setImageURI(selectedImage);
+                    }
+                    break;
+                case 8:
+                    if(resultCode == RESULT_OK){
+                        Uri selectedImage = imageReturnedIntent.getData();
+                        imageButton21.setImageURI(selectedImage);
+                    }
+                    break;
+                case 9:
+                    if(resultCode == RESULT_OK){
+                        Uri selectedImage = imageReturnedIntent.getData();
+                        imageButton22.setImageURI(selectedImage);
+                    }
+                    break;
+
+
+            }
+        }
+
+
     private void create(){
         ContentValues values = new ContentValues();
         values.put(DbTableHouse.FIELD_DESC, editTextDescCreate.getText().toString());
@@ -192,5 +399,16 @@ public class CreateActivity extends AppCompatActivity implements LoaderManager.L
     @Override
     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
 
+    }
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putString("MyString", "Welcome back to Android");
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        String myString = savedInstanceState.getString("MyString");
     }
 }

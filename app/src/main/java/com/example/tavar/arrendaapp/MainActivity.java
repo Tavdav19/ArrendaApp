@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
             }
             else
-                Toast.makeText(this, myfolder+" created.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, myfolder+ "created.", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(this, myfolder+" already exits.", Toast.LENGTH_SHORT).show();
     }

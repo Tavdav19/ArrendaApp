@@ -22,13 +22,14 @@
             tools:layout_constraintLeft_creator="1"
             tools:layout_constraintTop_creator="1" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/imageButton20"
             android:layout_width="120dp"
             android:layout_height="120dp"
             app:layout_constraintStart_toStartOf="@+id/imageButton10"
             app:layout_constraintTop_toTopOf="@+id/imageButton21"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@mipmap/ic_launcher"
+            android:contentDescription="TODO" />
 
         <TextView
             android:id="@+id/textViewUserName"
@@ -55,9 +56,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/ic_launcher"
-            android:layout_marginLeft="8dp" />
+            android:layout_marginLeft="8dp"
+            android:contentDescription="TODO" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/imageButton22"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -83,7 +85,7 @@
                 android:id="@+id/editTextLocCreate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Loc"
+                android:hint="@string/Localização"
                 android:inputType="textAutoComplete"
                 android:selectAllOnFocus="false"
                 android:singleLine="false"
@@ -166,7 +168,7 @@
                 android:id="@+id/editTextDescCreate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Description"
+                android:hint="@string/Descrição"
                 android:inputType="textAutoComplete"
                 android:selectAllOnFocus="false"
                 android:singleLine="false"
@@ -185,7 +187,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageViewPerfil"
             app:srcCompat="@drawable/bedroom" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/imageButton02"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -193,7 +195,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageButton01"
             app:srcCompat="@mipmap/ic_launcher" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/imageButton10"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -213,7 +215,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageIconBed"
             app:srcCompat="@drawable/people" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/imageButton12"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -221,7 +223,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageButton11"
             app:srcCompat="@mipmap/ic_launcher" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/imageButton21"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -235,7 +237,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageButton11"
             app:srcCompat="@mipmap/ic_launcher" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/imageButton11"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -247,7 +249,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageButton01"
             app:srcCompat="@mipmap/ic_launcher" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/imageButton00"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -255,7 +257,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageButton01"
             app:srcCompat="@mipmap/ic_launcher" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/imageButton01"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -277,10 +279,11 @@
             app:layout_constraintStart_toEndOf="@+id/imageIconBed"
             app:layout_constraintTop_toTopOf="@+id/imageIconBed"
             app:srcCompat="@drawable/bathroom"
-            android:layout_marginRight="8dp" />
+            android:layout_marginRight="8dp"
+            android:contentDescription="TODO" />
 
         <Button
-            android:id="@+id/UploadProfile"
+            android:id="@+id/uploadProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -289,22 +292,26 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Upload"
+            android:onClick="uploadProfile"
+            android:text="@string/upload"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewPerfil"
             app:layout_constraintEnd_toEndOf="@+id/imageViewPerfil"
             app:layout_constraintStart_toStartOf="@+id/imageViewPerfil"
             app:layout_constraintTop_toTopOf="@+id/imageViewPerfil" />
 
         <Button
-            android:id="@+id/Upload00"
+            android:id="@+id/upload00"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Upload"
+            android:text="@string/upload"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton00"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton00"
             app:layout_constraintStart_toStartOf="@+id/imageButton00"
             app:layout_constraintTop_toTopOf="@+id/imageButton00" />
 
@@ -318,7 +325,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Upload"
+            android:text="@string/upload"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton01"
             app:layout_constraintEnd_toEndOf="@+id/imageButton01"
             app:layout_constraintStart_toStartOf="@+id/imageButton01"
@@ -334,7 +341,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Upload"
+            android:text="@string/upload"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton02"
             app:layout_constraintEnd_toEndOf="@+id/imageButton02"
             app:layout_constraintStart_toStartOf="@+id/imageButton02"
@@ -350,7 +357,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Upload"
+            android:text="@string/upload"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton10"
             app:layout_constraintEnd_toEndOf="@+id/imageButton10"
             app:layout_constraintStart_toStartOf="@+id/imageButton10"
@@ -366,7 +373,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Upload"
+            android:text="@string/upload"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton20"
             app:layout_constraintEnd_toEndOf="@+id/imageButton20"
             app:layout_constraintStart_toStartOf="@+id/imageButton20"
@@ -382,7 +389,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Upload"
+            android:text="@string/upload"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton11"
             app:layout_constraintEnd_toEndOf="@+id/imageButton11"
             app:layout_constraintStart_toStartOf="@+id/imageButton11"
@@ -398,7 +405,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Upload"
+            android:text="@string/upload"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton21"
             app:layout_constraintEnd_toEndOf="@+id/imageButton21"
             app:layout_constraintStart_toStartOf="@+id/imageButton21"
@@ -413,7 +420,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
-            android:text="Upload"
+            android:text="@string/upload"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton12"
             app:layout_constraintEnd_toEndOf="@+id/imageButton12"
             app:layout_constraintStart_toStartOf="@+id/imageButton12"
@@ -429,7 +436,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Upload"
+            android:text="@string/upload"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton22"
             app:layout_constraintEnd_toEndOf="@+id/imageButton22"
             app:layout_constraintStart_toStartOf="@+id/imageButton22"
