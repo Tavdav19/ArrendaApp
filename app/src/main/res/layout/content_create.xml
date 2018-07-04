@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".CreateActivity"
+    tools:showIn="@layout/activity_create">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/section_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintTop_creator="1" />
+
+        <ImageButton
+            android:id="@+id/imageButton20"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintStart_toStartOf="@+id/imageButton10"
+            app:layout_constraintTop_toTopOf="@+id/imageButton21"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textViewUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="123dp"
+            android:layout_marginRight="123dp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/imageButton00"
+            app:layout_constraintEnd_toStartOf="@+id/textView7"
+            app:layout_constraintStart_toStartOf="@+id/imageViewPerfil"
+            tools:text="Zé vende" />
+
+        <ImageView
+            android:id="@+id/imageViewPerfil"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/textViewDesc"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:layout_marginLeft="8dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton22"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton12"
+            app:layout_constraintTop_toTopOf="@+id/imageButton21"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayoutTitleLoc"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/textViewUserName"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewPerfil"
+            app:layout_constraintStart_toStartOf="@+id/imageViewPerfil"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPerfil">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editTextLocCreate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Loc"
+                android:inputType="textAutoComplete"
+                android:selectAllOnFocus="false"
+                android:singleLine="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textSize="14sp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/spinnerPeople"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:spinnerMode="dialog"
+            app:layout_constraintBottom_toBottomOf="@+id/spinnerBathroom"
+            app:layout_constraintStart_toEndOf="@+id/textInputLayoutTitleLoc"
+            app:layout_constraintTop_toBottomOf="@+id/imageIconPpl"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Spinner
+            android:id="@+id/spinnerBedroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toEndOf="@+id/imageIconBed"
+            app:layout_constraintStart_toStartOf="@+id/imageIconBed"
+            app:layout_constraintTop_toBottomOf="@+id/imageIconBed" />
+
+        <Spinner
+            android:id="@+id/spinnerBathroom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:spinnerMode="dialog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/imageIconBath"
+            app:layout_constraintTop_toBottomOf="@+id/imageIconBath" />
+
+        <TextView
+            android:id="@+id/textViewDesc"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:textAllCaps="true"
+            android:textSize="8sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/imageIconBed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imageViewPerfil"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textInputLayoutTitleDesc"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageIconBed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewPerfil"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editTextDescCreate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Description"
+                android:inputType="textAutoComplete"
+                android:selectAllOnFocus="false"
+                android:singleLine="false"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
+        </android.support.design.widget.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/imageIconBed"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/imageIconBath"
+            app:layout_constraintStart_toEndOf="@+id/imageIconPpl"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPerfil"
+            app:srcCompat="@drawable/bedroom" />
+
+        <ImageButton
+            android:id="@+id/imageButton02"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintEnd_toEndOf="@+id/textViewDesc"
+            app:layout_constraintTop_toTopOf="@+id/imageButton01"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <ImageButton
+            android:id="@+id/imageButton10"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintStart_toStartOf="@+id/imageButton00"
+            app:layout_constraintTop_toTopOf="@+id/imageButton11"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/imageIconPpl"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageIconBed"
+            app:layout_constraintEnd_toStartOf="@+id/imageIconBed"
+            app:layout_constraintStart_toStartOf="@+id/textViewDesc"
+            app:layout_constraintTop_toTopOf="@+id/imageIconBed"
+            app:srcCompat="@drawable/people" />
+
+        <ImageButton
+            android:id="@+id/imageButton12"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintEnd_toEndOf="@+id/textViewDesc"
+            app:layout_constraintTop_toTopOf="@+id/imageButton11"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <ImageButton
+            android:id="@+id/imageButton21"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton22"
+            app:layout_constraintStart_toEndOf="@+id/imageButton20"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton11"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <ImageButton
+            android:id="@+id/imageButton11"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton12"
+            app:layout_constraintStart_toEndOf="@+id/imageButton10"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton01"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <ImageButton
+            android:id="@+id/imageButton00"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintStart_toStartOf="@+id/imageViewPerfil"
+            app:layout_constraintTop_toTopOf="@+id/imageButton01"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <ImageButton
+            android:id="@+id/imageButton01"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="11dp"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton02"
+            app:layout_constraintStart_toEndOf="@+id/imageButton00"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerPeople"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/imageIconBath"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageIconBed"
+            app:layout_constraintEnd_toEndOf="@+id/textViewDesc"
+            app:layout_constraintStart_toEndOf="@+id/imageIconBed"
+            app:layout_constraintTop_toTopOf="@+id/imageIconBed"
+            app:srcCompat="@drawable/bathroom"
+            android:layout_marginRight="8dp" />
+
+        <Button
+            android:id="@+id/UploadProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Upload"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewPerfil"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewPerfil"
+            app:layout_constraintStart_toStartOf="@+id/imageViewPerfil"
+            app:layout_constraintTop_toTopOf="@+id/imageViewPerfil" />
+
+        <Button
+            android:id="@+id/Upload00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Upload"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton00"
+            app:layout_constraintStart_toStartOf="@+id/imageButton00"
+            app:layout_constraintTop_toTopOf="@+id/imageButton00" />
+
+        <Button
+            android:id="@+id/upload01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Upload"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton01"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton01"
+            app:layout_constraintStart_toStartOf="@+id/imageButton01"
+            app:layout_constraintTop_toTopOf="@+id/imageButton01" />
+
+        <Button
+            android:id="@+id/upload02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Upload"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton02"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton02"
+            app:layout_constraintStart_toStartOf="@+id/imageButton02"
+            app:layout_constraintTop_toTopOf="@+id/imageButton02" />
+
+        <Button
+            android:id="@+id/upload10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Upload"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton10"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton10"
+            app:layout_constraintStart_toStartOf="@+id/imageButton10"
+            app:layout_constraintTop_toTopOf="@+id/imageButton10" />
+
+        <Button
+            android:id="@+id/upload20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Upload"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton20"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton20"
+            app:layout_constraintStart_toStartOf="@+id/imageButton20"
+            app:layout_constraintTop_toTopOf="@+id/imageButton20" />
+
+        <Button
+            android:id="@+id/upload11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Upload"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton11"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton11"
+            app:layout_constraintStart_toStartOf="@+id/imageButton11"
+            app:layout_constraintTop_toTopOf="@+id/imageButton11" />
+
+        <Button
+            android:id="@+id/upload21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Upload"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton21"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton21"
+            app:layout_constraintStart_toStartOf="@+id/imageButton21"
+            app:layout_constraintTop_toTopOf="@+id/imageButton21" />
+
+        <Button
+            android:id="@+id/upload12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:text="Upload"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton12"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton12"
+            app:layout_constraintStart_toStartOf="@+id/imageButton12"
+            app:layout_constraintTop_toTopOf="@+id/imageButton12" />
+
+        <Button
+            android:id="@+id/upload22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Upload"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton22"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton22"
+            app:layout_constraintStart_toStartOf="@+id/imageButton22"
+            app:layout_constraintTop_toTopOf="@+id/imageButton22" />
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

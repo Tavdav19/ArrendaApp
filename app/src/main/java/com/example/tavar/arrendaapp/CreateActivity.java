@@ -1,7 +1,7 @@
 package com.example.tavar.arrendaapp;
 
-
-import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,36 +10,37 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ActivityEdit extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
-    private House house;
+public class CreateActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+
     public static final String HOUSE_ID = "HOUSE_ID";
-    private static final int SELLER_CURSOR_LOADER_ID = 0;
-    public EditText editTextDesc;
-    public EditText editTextLoc;
+    private static final int HOUSE_CURSOR_LOARDER_ID = 0;
+    public EditText editTextDescCreate;
+    public EditText editTextLocCreate;
     public TextView textViewUserName;
     public Spinner spinnerPeople;
     public Spinner spinnerBedroom;
     public Spinner spinnerBathroom;
+    public Uri newUri;
+    public House house;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit);
+        setContentView(R.layout.activity_create);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -47,18 +48,11 @@ public class ActivityEdit extends AppCompatActivity implements LoaderManager.Loa
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                save(view);
-
+                create();
+                finish();
             }
         });
-        FloatingActionButton fabDelete = (FloatingActionButton) findViewById(R.id.fabDelete);
-        fabDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                delete(view);
 
-            }
-        });
         Intent intent = getIntent();
 
         int houseId = intent.getIntExtra(HousesActivity.HOUSE_ID, -1);
@@ -80,59 +74,48 @@ public class ActivityEdit extends AppCompatActivity implements LoaderManager.Loa
             return;
         }
 
-        editTextDesc = (EditText) findViewById(R.id.editTextDesc);
-        editTextLoc = (EditText) findViewById(R.id.editTextLoc);
-        textViewUserName = (TextView) findViewById(R.id.textViewUserName);
-        spinnerPeople= (Spinner) findViewById(R.id.spinnerPeople);
-        spinnerBedroom =(Spinner) findViewById(R.id.spinnerBedroom);
-        spinnerBathroom = (Spinner) findViewById(R.id.spinnerBathroom);
-
-        house = DbTableHouse.getCurrentHouseFromCursor(cursorHouse);
-
-        editTextDesc.setText(String.valueOf(house.getDescription()));
-        editTextLoc.setText(String.valueOf(house.getLoc()));
-        textViewUserName.setText(String.valueOf(house.getIdSeller()));
-
+        editTextDescCreate = (EditText) findViewById(R.id.editTextDescCreate);
+        editTextLocCreate = (EditText) findViewById(R.id.editTextLocCreate);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        getSupportLoaderManager().initLoader(SELLER_CURSOR_LOADER_ID,null,this);
+        getSupportLoaderManager().initLoader(HOUSE_CURSOR_LOARDER_ID,null,  this);
+    }
+    private void create(){
+        ContentValues values = new ContentValues();
+        values.put(DbTableHouse.FIELD_DESC, editTextDescCreate.getText().toString());
+        values.put(DbTableHouse.FIELD_LOC, editTextDescCreate.getText().toString());
+        ContentResolver cr = getContentResolver();
+        Uri newUri = cr.insert(ArrendaContentProvider.HOUSE_URI, values);
+        Toast.makeText(this, "House Created", Toast.LENGTH_LONG).show();
+
     }
 
-    public void save (View view) {
-        //todo: Validations
-
-        house.setDescription(editTextDesc.getText().toString());
-        house.setLoc(editTextLoc.getText().toString());
-        house.setPeople((int) spinnerPeople.getSelectedItemId());
-        house.setBedroom((int) spinnerBedroom.getSelectedItemId());
-        house.setBathroom((int) spinnerBathroom.getSelectedItemId());
-
-        int recordsAffected = getContentResolver().update(
-                Uri.withAppendedPath(ArrendaContentProvider.HOUSE_URI, Integer.toString(house.getId())),
-                DbTableHouse.getContentValues(house),
-                null,
-                null
-        );
-
-        if (recordsAffected > 0) {
-            Toast.makeText(this, "Saved", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, "Could not save", Toast.LENGTH_LONG).show();
-        }
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getSupportLoaderManager().restartLoader(HOUSE_CURSOR_LOARDER_ID, null, this);
     }
-    public void delete(View view){
-        int recordsAffected = getContentResolver().delete(Uri.withAppendedPath(ArrendaContentProvider.HOUSE_URI,Integer.toString(house.getId()) ),
-                DbTableHouse._ID +"=?", new String [] { Integer.toString(house.getId()) });
 
-        if (recordsAffected > 0) {
-            Toast.makeText(this, "Deleted", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, "Could not delete", Toast.LENGTH_LONG).show();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+
+        return super.onOptionsItemSelected(item);
     }
     /**
      * Instantiate and return a new Loader for the given ID.
@@ -146,7 +129,7 @@ public class ActivityEdit extends AppCompatActivity implements LoaderManager.Loa
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-        if (id == SELLER_CURSOR_LOADER_ID){
+        if (id == HOUSE_CURSOR_LOARDER_ID) {
             return new android.support.v4.content.CursorLoader(this, ArrendaContentProvider.HOUSE_URI, DbTableHouse.ALL_COLUMNS, null, null, null);
         }
         return null;
@@ -194,64 +177,7 @@ public class ActivityEdit extends AppCompatActivity implements LoaderManager.Loa
      */
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
-        SimpleCursorAdapter cursorAdapterPeople = new SimpleCursorAdapter(
-                this,
-                android.R.layout.simple_list_item_1,
-                data,
-                new String[]{DbTableHouse.FIELD_PEOPLE},
-                new int[]{android.R.id.text1}
-        );
 
-        spinnerPeople.setAdapter(cursorAdapterPeople);
-        int people = house.getPeople();
-        for (int i= 0; i<spinnerPeople.getCount(); i++){
-            Cursor cursor = (Cursor) spinnerPeople.getItemAtPosition(i);
-            final int posId = cursor.getColumnIndex(DbTableHouse.FIELD_PEOPLE);
-            if (people == cursor.getInt(posId)){
-                spinnerPeople.setSelection(i);
-                break;
-
-            }
-        }
-
-        SimpleCursorAdapter cursorAdapterBedroom = new SimpleCursorAdapter(
-                this,
-                android.R.layout.simple_list_item_1,
-                data,
-                new String[]{DbTableHouse.FIELD_BEDROOM},
-                new int[]{android.R.id.text1}
-        );
-
-        spinnerBedroom.setAdapter(cursorAdapterBedroom);
-        int bedroom = house.getBedroom();
-        for (int i= 0; i<spinnerBedroom.getCount(); i++){
-            Cursor cursor = (Cursor) spinnerBedroom.getItemAtPosition(i);
-            final int posId = cursor.getColumnIndex(DbTableHouse.FIELD_BEDROOM);
-            if (bedroom == cursor.getInt(posId)){
-                spinnerBedroom.setSelection(i);
-                break;
-
-            }
-        }
-        SimpleCursorAdapter cursorAdapterBathrooms = new SimpleCursorAdapter(
-                this,
-                android.R.layout.simple_list_item_1,
-                data,
-                new String[]{DbTableHouse.FIELD_BATHROOM},
-                new int[]{android.R.id.text1}
-        );
-
-        spinnerBathroom.setAdapter(cursorAdapterBathrooms);
-        int bathroom = house.getBathroom();
-        for (int i= 0; i<spinnerBathroom.getCount(); i++){
-            Cursor cursor = (Cursor) spinnerBathroom.getItemAtPosition(i);
-            final int posId = cursor.getColumnIndex(DbTableHouse.FIELD_BATHROOM);
-            if (bathroom == cursor.getInt(posId)){
-                spinnerBathroom.setSelection(i);
-                break;
-
-            }
-        }
     }
 
     /**

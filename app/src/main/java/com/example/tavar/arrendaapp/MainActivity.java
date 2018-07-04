@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private static final int HOUSE_CURSOR_LOARDER_ID = 0;
     public static final String HOUSE_ID = "HOUSE_ID";
+    public static final String HOUSE = "HOUSE";
+    public static final String SELLER_ID = "SELLER_ID";
 
     public FeedCursorAdapter feedCursorAdapter;
     private RecyclerView recyclerViewFeed;
@@ -41,6 +44,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                create();
+
+            }
+        });
 
 
         recyclerViewFeed = (RecyclerView) findViewById(R.id.recyclerViewFeed);
@@ -61,23 +73,25 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     }
     public void createFolder(String fname){
-            String myfolder=getFilesDir()+"/"+fname;
-            File f=new File(myfolder);
-            if(!f.exists())
-                if(!f.mkdir()){
-                    Toast.makeText(this, myfolder+" can't be created.", Toast.LENGTH_SHORT).show();
+        String myfolder=getFilesDir()+"/"+fname+"/"+"0";
+        File f=new File(myfolder);
+        if(!f.exists())
+            if(!f.mkdir()){
+                Toast.makeText(this, myfolder+" can't be created.", Toast.LENGTH_SHORT).show();
 
-                }
-                else
-                    Toast.makeText(this, myfolder+" can be created.", Toast.LENGTH_SHORT).show();
+            }
             else
-                Toast.makeText(this, myfolder+" already exits.", Toast.LENGTH_SHORT).show();
-        }
+                Toast.makeText(this, myfolder+" created.", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(this, myfolder+" already exits.", Toast.LENGTH_SHORT).show();
+    }
 
-
-
-
-
+    public void create() {
+        int id = feedCursorAdapter.getItemCount();
+        Intent intent = new Intent(this, CreateActivity.class);
+        intent.putExtra(HOUSE_ID, id);
+        startActivity(intent);
+    }
 
     private void viewHouse(){
         int id = feedCursorAdapter.getLastHouseClicked();

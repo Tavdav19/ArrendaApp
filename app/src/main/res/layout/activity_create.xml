@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityEdit">
-
-
+    tools:context=".CreateActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -22,9 +20,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-
-
-    <include layout="@layout/content_edit" />
+    <include layout="@layout/content_create" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -32,17 +28,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@android:color/holo_blue_dark"
-        app:layout_anchorGravity="top|right"
-        app:srcCompat="@android:drawable/ic_menu_save" />
+        app:backgroundTint="@android:color/holo_green_light"
+        app:srcCompat="@android:drawable/ic_menu_upload" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabDelete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|start"
-        android:layout_margin="@dimen/fab_margin"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
+
 
 </android.support.design.widget.CoordinatorLayout>

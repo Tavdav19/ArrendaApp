@@ -119,4 +119,6 @@
     </string>
     <string name="title_activity_houses">HousesActivity</string>
     <string name="menu_refresh">menu_refresh</string>
+    <string name="title_activity_criar">CriarActivity</string>
+    <string name="title_activity_create">CreateActivity</string>
 </resources>
