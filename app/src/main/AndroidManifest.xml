@@ -62,7 +62,10 @@
             android:name=".CreateActivity"
             android:label="@string/title_activity_create"
             android:parentActivityName=".HousesActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>

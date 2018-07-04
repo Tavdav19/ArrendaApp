@@ -120,7 +120,8 @@ public class HousesActivity extends AppCompatActivity implements LoaderManager.L
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent intent = new Intent (this,SettingsActivity.class);
+            startActivity(intent);
         }else if(id == R.id.action_edit){
             int ids = house.getId();
 

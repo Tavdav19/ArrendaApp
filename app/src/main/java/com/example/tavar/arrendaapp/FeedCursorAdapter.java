@@ -19,7 +19,9 @@ public class FeedCursorAdapter extends RecyclerView.Adapter<FeedCursorAdapter.Fe
     private Cursor cursor = null;
     private View.OnClickListener viewHolderClickListener = null;
     private  int lastHouseClicked = -1;
-
+    private String[] currency = {
+            "€", "$", "£"
+    };
     public FeedCursorAdapter(Context context){ this.context = context; }
 
 
@@ -120,7 +122,7 @@ public class FeedCursorAdapter extends RecyclerView.Adapter<FeedCursorAdapter.Fe
         }
         public void setHouse(House house){
             textViewLoc.setText(house.getLoc());
-            textViewPrice.setText(String.format( "%d" ,house.getWeekPrice())+ "€");
+            textViewPrice.setText(String.format( "%d" ,house.getWeekPrice())+ currency);
             //imageViewHouse.setImageURI(Uri.parse(house.getImageHouse()));
             houseId = house.getId();
         }
