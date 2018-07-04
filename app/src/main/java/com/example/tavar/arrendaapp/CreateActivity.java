@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
@@ -36,6 +37,7 @@ public class CreateActivity extends AppCompatActivity implements LoaderManager.L
     public Spinner spinnerPeople;
     public Spinner spinnerBedroom;
     public Spinner spinnerBathroom;
+    public EditText editTextPriceCreate;
     public Uri newUri;
     public House house;
     public ImageView imageViewPerfil;
@@ -67,6 +69,7 @@ public class CreateActivity extends AppCompatActivity implements LoaderManager.L
             }
         });
         intiButtons();
+        spinnerAction();
         Intent intent = getIntent();
 
         int houseId = intent.getIntExtra(HousesActivity.HOUSE_ID, -1);
@@ -87,9 +90,13 @@ public class CreateActivity extends AppCompatActivity implements LoaderManager.L
             finish();
             return;
         }
-
+        editTextPriceCreate= (EditText) findViewById(R.id.editTextPriceCreate);
         editTextDescCreate = (EditText) findViewById(R.id.editTextDescCreate);
         editTextLocCreate = (EditText) findViewById(R.id.editTextLocCreate);
+        spinnerPeople = (Spinner) findViewById(R.id.spinnerPeople);
+        spinnerBedroom = (Spinner) findViewById(R.id.spinnerBedroom);
+        spinnerBathroom = (Spinner) findViewById(R.id.spinnerBathroom);
+
         imageViewPerfil = (ImageView) findViewById(R.id.imageViewPerfil);
         imageButton00 = (ImageView) findViewById(R.id.imageButton00);
         imageButton01 = (ImageView) findViewById(R.id.imageButton01);
@@ -107,9 +114,34 @@ public class CreateActivity extends AppCompatActivity implements LoaderManager.L
 
         getSupportLoaderManager().initLoader(HOUSE_CURSOR_LOARDER_ID, null, this);
     }
+    public void spinnerAction(){
+        String ppl[] = {"1","2","3","4","5","6","7","8","9","10"};
+
+        Spinner people = (Spinner) findViewById(R.id.spinnerPeople);
+
+        ArrayAdapter<String> peopleArrayAdapter = new ArrayAdapter<String>(this,   android.R.layout.simple_spinner_item, ppl);
+        peopleArrayAdapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+        people.setAdapter(peopleArrayAdapter);
+
+        String bdr [] = {"1","2","3","4","5","6"};
+
+        Spinner bedroom = (Spinner) findViewById(R.id.spinnerBedroom);
+
+        ArrayAdapter<String> bedroomArrayAdapter = new ArrayAdapter<String>(this,   android.R.layout.simple_spinner_item, bdr);
+        bedroomArrayAdapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+        bedroom.setAdapter(bedroomArrayAdapter);
+
+        String bth[] = {"1","2","3","4"};
+
+        Spinner bathroom = (Spinner) findViewById(R.id.spinnerBathroom);
+
+        ArrayAdapter<String> bathroomArrayAdapter = new ArrayAdapter<String>(this,   android.R.layout.simple_spinner_item, bth);
+        bathroomArrayAdapter.setDropDownViewResource(android.R.layout.simple_expandable_list_item_1);
+        bathroom.setAdapter(bathroomArrayAdapter);
+    }
+
     public void createAction(){
-        if(editTextDescCreate!=null&&editTextLocCreate!=null&&spinnerBathroom!=null
-            &&spinnerBedroom!=null&&spinnerBathroom!=null){
+        if(editTextDescCreate!=null&&editTextLocCreate!=null){
         create();
         finish();
     }else{
@@ -290,7 +322,11 @@ public class CreateActivity extends AppCompatActivity implements LoaderManager.L
     private void create(){
         ContentValues values = new ContentValues();
         values.put(DbTableHouse.FIELD_DESC, editTextDescCreate.getText().toString());
-        values.put(DbTableHouse.FIELD_LOC, editTextDescCreate.getText().toString());
+        values.put(DbTableHouse.FIELD_WEEKPRICE, editTextPriceCreate.getText().toString());
+        values.put(DbTableHouse.FIELD_LOC, editTextLocCreate.getText().toString());
+        values.put(DbTableHouse.FIELD_PEOPLE, spinnerPeople.getSelectedItem().toString());
+        values.put(DbTableHouse.FIELD_BEDROOM, spinnerBedroom.getSelectedItem().toString());
+        values.put(DbTableHouse.FIELD_BATHROOM, spinnerBathroom.getSelectedItem().toString());
         ContentResolver cr = getContentResolver();
         Uri newUri = cr.insert(ArrendaContentProvider.HOUSE_URI, values);
         Toast.makeText(this, "House Created", Toast.LENGTH_LONG).show();

@@ -37,6 +37,7 @@ public class ActivityEdit extends AppCompatActivity implements LoaderManager.Loa
     public Spinner spinnerPeople;
     public Spinner spinnerBedroom;
     public Spinner spinnerBathroom;
+    public EditText editTextPrice;
     public ImageView imageViewPerfil;
     public ImageView imageButton00;
     public ImageView imageButton01;
@@ -110,6 +111,7 @@ public class ActivityEdit extends AppCompatActivity implements LoaderManager.Loa
         imageButton21 = (ImageView) findViewById(R.id.imageButton21);
         imageButton22 = (ImageView) findViewById(R.id.imageButton22);
 
+        editTextPrice = (EditText) findViewById(R.id.editTextPrice);
         editTextDesc = (EditText) findViewById(R.id.editTextDesc);
         editTextLoc = (EditText) findViewById(R.id.editTextLoc);
         textViewUserName = (TextView) findViewById(R.id.textViewUserName);
@@ -121,6 +123,7 @@ public class ActivityEdit extends AppCompatActivity implements LoaderManager.Loa
 
         editTextDesc.setText(String.valueOf(house.getDescription()));
         editTextLoc.setText(String.valueOf(house.getLoc()));
+        editTextPrice.setText(String.valueOf(house.getWeekPrice()));
         textViewUserName.setText(String.valueOf(house.getIdSeller()));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -128,8 +131,7 @@ public class ActivityEdit extends AppCompatActivity implements LoaderManager.Loa
         getSupportLoaderManager().initLoader(SELLER_CURSOR_LOADER_ID,null,this);
     }
     private void saveAction() {
-        if (editTextDesc != null && editTextLoc != null && spinnerBathroom != null
-                && spinnerBedroom != null && spinnerBathroom != null) {
+        if (editTextDesc != null && editTextLoc != null && editTextPrice!=null) {
             save(saveView);
             finish();
         } else {
@@ -310,6 +312,7 @@ public class ActivityEdit extends AppCompatActivity implements LoaderManager.Loa
 
         house.setDescription(editTextDesc.getText().toString());
         house.setLoc(editTextLoc.getText().toString());
+        house.setWeekPrice(Integer.parseInt(editTextPrice.getText().toString()));
         house.setPeople((int) spinnerPeople.getSelectedItemId());
         house.setBedroom((int) spinnerBedroom.getSelectedItemId());
         house.setBathroom((int) spinnerBathroom.getSelectedItemId());
