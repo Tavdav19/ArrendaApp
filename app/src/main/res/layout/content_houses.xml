@@ -150,7 +150,7 @@
             app:layout_constraintEnd_toStartOf="@+id/imageIconBath"
             app:layout_constraintStart_toEndOf="@+id/imageIconPpl"
             app:layout_constraintTop_toBottomOf="@+id/imageViewPerfil"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@drawable/bedroom" />
 
         <TextView
             android:id="@+id/textViewBathroom"
@@ -194,7 +194,7 @@
             app:layout_constraintEnd_toStartOf="@+id/imageIconBed"
             app:layout_constraintStart_toStartOf="@+id/textViewDesc"
             app:layout_constraintTop_toTopOf="@+id/imageIconBed"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@drawable/people" />
 
         <ImageButton
             android:id="@+id/imageButton12"
@@ -266,7 +266,7 @@
             app:layout_constraintEnd_toEndOf="@+id/textViewDesc"
             app:layout_constraintStart_toEndOf="@+id/imageIconBed"
             app:layout_constraintTop_toTopOf="@+id/imageIconBed"
-            app:srcCompat="@mipmap/ic_launcher" />
+            app:srcCompat="@drawable/bathroom" />
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>
