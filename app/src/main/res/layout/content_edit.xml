@@ -26,6 +26,7 @@
                 android:id="@+id/imageButton20"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
+                android:contentDescription="@string/todo"
                 app:layout_constraintStart_toStartOf="@+id/imageButton10"
                 app:layout_constraintTop_toTopOf="@+id/imageButton21"
                 app:srcCompat="@mipmap/ic_launcher" />
@@ -39,7 +40,6 @@
                 android:layout_marginRight="123dp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toTopOf="@+id/imageButton00"
-                app:layout_constraintEnd_toStartOf="@+id/textView7"
                 app:layout_constraintStart_toStartOf="@+id/imageViewPerfil"
                 tools:text="Zé vende" />
 
@@ -48,19 +48,22 @@
                 android:layout_width="128dp"
                 android:layout_height="128dp"
                 android:layout_marginEnd="12dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
+                android:contentDescription="@string/todo"
                 app:layout_constraintEnd_toStartOf="@+id/textViewDesc"
                 app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@mipmap/ic_launcher"
-                android:layout_marginLeft="8dp" />
+                android:layout_marginRight="12dp" />
 
             <ImageView
                 android:id="@+id/imageButton22"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
+                android:contentDescription="@string/todo"
                 app:layout_constraintEnd_toEndOf="@+id/imageButton12"
                 app:layout_constraintTop_toTopOf="@+id/imageButton21"
                 app:srcCompat="@mipmap/ic_launcher" />
@@ -139,7 +142,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="16dp"
                 android:textAllCaps="true"
-                android:textSize="8sp"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/imageIconBed"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -180,6 +183,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
+                android:contentDescription="@string/todo"
                 app:layout_constraintEnd_toStartOf="@+id/imageIconBath"
                 app:layout_constraintStart_toEndOf="@+id/imageIconPpl"
                 app:layout_constraintTop_toBottomOf="@+id/imageViewPerfil"
@@ -189,6 +193,7 @@
                 android:id="@+id/imageButton02"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
+                android:contentDescription="@string/todo"
                 app:layout_constraintEnd_toEndOf="@+id/textViewDesc"
                 app:layout_constraintTop_toTopOf="@+id/imageButton01"
                 app:srcCompat="@mipmap/ic_launcher" />
@@ -197,6 +202,7 @@
                 android:id="@+id/imageButton10"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
+                android:contentDescription="@string/todo"
                 app:layout_constraintStart_toStartOf="@+id/imageButton00"
                 app:layout_constraintTop_toTopOf="@+id/imageButton11"
                 app:srcCompat="@mipmap/ic_launcher" />
@@ -207,6 +213,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
+                android:contentDescription="@string/todo"
                 app:layout_constraintBottom_toBottomOf="@+id/imageIconBed"
                 app:layout_constraintEnd_toStartOf="@+id/imageIconBed"
                 app:layout_constraintStart_toStartOf="@+id/textViewDesc"
@@ -217,6 +224,7 @@
                 android:id="@+id/imageButton12"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
+                android:contentDescription="@string/todo"
                 app:layout_constraintEnd_toEndOf="@+id/textViewDesc"
                 app:layout_constraintTop_toTopOf="@+id/imageButton11"
                 app:srcCompat="@mipmap/ic_launcher" />
@@ -229,6 +237,7 @@
                 android:layout_marginEnd="4dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
+                android:contentDescription="@string/todo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageButton22"
                 app:layout_constraintStart_toEndOf="@+id/imageButton20"
@@ -242,6 +251,7 @@
                 android:layout_marginEnd="4dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
+                android:contentDescription="@string/todo"
                 app:layout_constraintEnd_toStartOf="@+id/imageButton12"
                 app:layout_constraintStart_toEndOf="@+id/imageButton10"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton01"
@@ -251,6 +261,7 @@
                 android:id="@+id/imageButton00"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
+                android:contentDescription="@string/todo"
                 app:layout_constraintStart_toStartOf="@+id/imageViewPerfil"
                 app:layout_constraintTop_toTopOf="@+id/imageButton01"
                 app:srcCompat="@mipmap/ic_launcher" />
@@ -262,6 +273,7 @@
                 android:layout_marginEnd="4dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="11dp"
+                android:contentDescription="@string/todo"
                 app:layout_constraintEnd_toStartOf="@+id/imageButton02"
                 app:layout_constraintStart_toEndOf="@+id/imageButton00"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerPeople"
@@ -272,11 +284,13 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="8dp"
+                android:contentDescription="@string/todo"
                 app:layout_constraintBottom_toBottomOf="@+id/imageIconBed"
                 app:layout_constraintEnd_toEndOf="@+id/textViewDesc"
                 app:layout_constraintStart_toEndOf="@+id/imageIconBed"
                 app:layout_constraintTop_toTopOf="@+id/imageIconBed"
-                app:srcCompat="@drawable/bathroom" />
+                app:srcCompat="@drawable/bathroom"
+                android:layout_marginRight="8dp" />
 
             <Button
                 android:id="@+id/uploadProfile"
@@ -448,9 +462,9 @@
                     android:id="@+id/editTextPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Preço"
+                    android:hint="@string/price"
                     android:textColor="@android:color/holo_green_light"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
             </android.support.design.widget.TextInputLayout>
 
         </android.support.constraint.ConstraintLayout>

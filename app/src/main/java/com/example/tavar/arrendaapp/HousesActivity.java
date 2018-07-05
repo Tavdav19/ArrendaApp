@@ -67,7 +67,7 @@ public class HousesActivity extends AppCompatActivity implements LoaderManager.L
                 null
         );
             if (!cursorHouse.moveToNext()) {
-                Toast.makeText(this, "Not found", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.Notfound, Toast.LENGTH_LONG).show();
                 finish();
                 return;
             }
@@ -84,6 +84,7 @@ public class HousesActivity extends AppCompatActivity implements LoaderManager.L
         textViewBathroom = (TextView) findViewById(R.id.textViewBathroom);
 
         house = DbTableHouse.getCurrentHouseFromCursor(cursorHouse);
+
 
         textViewDesc.setText(String.valueOf(house.getDescription()));
         textViewLoc.setText(String.valueOf(house.getLoc()));

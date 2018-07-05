@@ -1,5 +1,5 @@
 package com.example.tavar.arrendaapp;
-
+// todo imagewall
 public class ImageWall {
     private int id;
     private int idHouse;

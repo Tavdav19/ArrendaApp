@@ -14,6 +14,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ImageView;
 
+import java.util.List;
+
 public class FeedCursorAdapter extends RecyclerView.Adapter<FeedCursorAdapter.FeedViewHolder> {
     private Context context;
     private Cursor cursor = null;
@@ -68,7 +70,7 @@ public class FeedCursorAdapter extends RecyclerView.Adapter<FeedCursorAdapter.Fe
 
     /**
      * Called by RecyclerView to display the data at the specified position. This method should
-     * update the contents of the {@link ViewHolder#itemView} to reflect the item at the given
+     * update the contents of the {@link RecyclerView.ViewHolder#itemView} to reflect the item at the given
      * position.
      * <p>
      * Note that unlike {@link ListView}, RecyclerView will not call this method
@@ -76,10 +78,10 @@ public class FeedCursorAdapter extends RecyclerView.Adapter<FeedCursorAdapter.Fe
      * invalidated or the new position cannot be determined. For this reason, you should only
      * use the <code>position</code> parameter while acquiring the related data item inside
      * this method and should not keep a copy of it. If you need the position of an item later
-     * on (e.g. in a click listener), use {@link ViewHolder#getAdapterPosition()} which will
+     * on (e.g. in a click listener), use {@link RecyclerView.ViewHolder#getAdapterPosition()} which will
      * have the updated adapter position.
      * <p>
-     * Override {@link #onBindViewHolder(ViewHolder, int, List)} instead if Adapter can
+     * Override  instead if Adapter can
      * handle efficient partial bind.
      *
      * @param holder   The ViewHolder which should be updated to represent the contents of the
@@ -122,7 +124,7 @@ public class FeedCursorAdapter extends RecyclerView.Adapter<FeedCursorAdapter.Fe
         }
         public void setHouse(House house){
             textViewLoc.setText(house.getLoc());
-            textViewPrice.setText(String.format( "%d" ,house.getWeekPrice())+ currency);
+            textViewPrice.setText(String.format( "%d" ,house.getWeekPrice())+ "€");
             //imageViewHouse.setImageURI(Uri.parse(house.getImageHouse()));
             houseId = house.getId();
         }

@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
@@ -45,7 +46,7 @@ public class ChatActivity extends AppCompatActivity implements LoaderManager.Loa
                 null
         );
         if (!cursorHouse.moveToNext()) {
-            Toast.makeText(this, "Not found", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.Notfound, Toast.LENGTH_LONG).show();
             finish();
             return;
         }
@@ -101,7 +102,7 @@ public class ChatActivity extends AppCompatActivity implements LoaderManager.Loa
      * them to you through new calls here.  You should not monitor the
      * data yourself.  For example, if the data is a {@link Cursor}
      * and you place it in a {@link CursorAdapter}, use
-     * the {@link CursorAdapter#CursorAdapter(Context, * Cursor, int)} constructor <em>without</em> passing
+     * the  constructor <em>without</em> passing
      * in either {@link CursorAdapter#FLAG_AUTO_REQUERY}
      * or {@link CursorAdapter#FLAG_REGISTER_CONTENT_OBSERVER}
      * (that is, use 0 for the flags argument).  This prevents the CursorAdapter

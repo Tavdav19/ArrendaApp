@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        createFolder("ArrendaApp");
+        //createFolder("ArrendaApp");
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -72,19 +72,19 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
 
     }
-    public void createFolder(String fname){
+    /*public void createFolder(String fname){
         String myfolder=getFilesDir()+"/"+fname+"/"+"0";
         File f=new File(myfolder);
         if(!f.exists())
             if(!f.mkdir()){
-                Toast.makeText(this, myfolder+" can't be created.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, myfolder+getString(R.string.cantbecreated), Toast.LENGTH_SHORT).show();
 
             }
             else
-                Toast.makeText(this, myfolder+ "created.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, myfolder+ getString(R.string.Created), Toast.LENGTH_SHORT).show();
         else
-            Toast.makeText(this, myfolder+" already exits.", Toast.LENGTH_SHORT).show();
-    }
+            Toast.makeText(this, myfolder+getString(R.string.alreadyexits), Toast.LENGTH_SHORT).show();
+    }*/
 
     public void create() {
         int id = feedCursorAdapter.getItemCount();

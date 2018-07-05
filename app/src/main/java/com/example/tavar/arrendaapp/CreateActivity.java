@@ -86,7 +86,7 @@ public class CreateActivity extends AppCompatActivity implements LoaderManager.L
                 null
         );
         if (!cursorHouse.moveToNext()) {
-            Toast.makeText(this, "Not found", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.Notfound, Toast.LENGTH_LONG).show();
             finish();
             return;
         }
@@ -141,11 +141,11 @@ public class CreateActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     public void createAction(){
-        if(editTextDescCreate!=null&&editTextLocCreate!=null){
-        create();
-        finish();
+        if(editTextDescCreate != null && editTextLocCreate != null){
+            create();
+            finish();
     }else{
-        Toast.makeText(this, "Complete all parameters please", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.Completeallparameters, Toast.LENGTH_LONG).show();
     }
 
 }
@@ -321,6 +321,7 @@ public class CreateActivity extends AppCompatActivity implements LoaderManager.L
 
     private void create(){
         ContentValues values = new ContentValues();
+        //values.put(DbTableHouse.FIELD_IMAGE_HOUSE, String.valueOf(imageViewPerfil));
         values.put(DbTableHouse.FIELD_DESC, editTextDescCreate.getText().toString());
         values.put(DbTableHouse.FIELD_WEEKPRICE, editTextPriceCreate.getText().toString());
         values.put(DbTableHouse.FIELD_LOC, editTextLocCreate.getText().toString());
@@ -329,7 +330,7 @@ public class CreateActivity extends AppCompatActivity implements LoaderManager.L
         values.put(DbTableHouse.FIELD_BATHROOM, spinnerBathroom.getSelectedItem().toString());
         ContentResolver cr = getContentResolver();
         Uri newUri = cr.insert(ArrendaContentProvider.HOUSE_URI, values);
-        Toast.makeText(this, "House Created", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.housecreated, Toast.LENGTH_LONG).show();
 
     }
 
@@ -436,15 +437,13 @@ public class CreateActivity extends AppCompatActivity implements LoaderManager.L
     public void onLoaderReset(@NonNull Loader<Cursor> loader) {
 
     }
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putString("MyString", "Welcome back to Android");
-        super.onSaveInstanceState(savedInstanceState);
-    }
 
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        String myString = savedInstanceState.getString("MyString");
-    }
+    // TODO: 05-07-2018   public void onSaveInstanceState(Bundle savedInstanceState) {
+
+
+
+
+// TODO: 05-07-2018   public void onRestoreInstanceState(Bundle savedInstanceState) {
+
+
 }

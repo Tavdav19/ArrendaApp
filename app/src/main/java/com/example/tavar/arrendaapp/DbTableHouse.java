@@ -16,9 +16,9 @@ public class DbTableHouse implements BaseColumns {
     public static final String FIELD_BATHROOM = "bathroom";
     public static final String FIELD_WEEKPRICE= "weekPrice";
     private static final String FIELD_ID_SELLER= "idSeller";
-    private static final String IMAGE_HOUSE= "imageHouse";
+    public static final String FIELD_IMAGE_HOUSE= "imageHouse";
 
-    public static final String [] ALL_COLUMNS = new String[] {_ID, FIELD_DESC, FIELD_LOC, FIELD_PEOPLE, FIELD_BEDROOM, FIELD_BATHROOM, FIELD_WEEKPRICE, FIELD_ID_SELLER };
+    public static final String [] ALL_COLUMNS = new String[] {_ID, FIELD_DESC, FIELD_LOC, FIELD_PEOPLE, FIELD_BEDROOM, FIELD_BATHROOM, FIELD_WEEKPRICE, FIELD_ID_SELLER, FIELD_IMAGE_HOUSE };
 
 
     public DbTableHouse (SQLiteDatabase db){
@@ -35,7 +35,7 @@ public class DbTableHouse implements BaseColumns {
                         FIELD_BEDROOM + " INTEGER," +
                         FIELD_BATHROOM + " INTEGER," +
                         FIELD_WEEKPRICE + " INTEGER," +
-                        IMAGE_HOUSE     + " TEXT," +
+                        FIELD_IMAGE_HOUSE     + " BLOB," +
                         FIELD_ID_SELLER + " INTEGER," +
 
                         "FOREIGN KEY (" + FIELD_ID_SELLER + ") REFERENCES " +
@@ -56,6 +56,8 @@ public class DbTableHouse implements BaseColumns {
         values.put(FIELD_WEEKPRICE, house.getWeekPrice());
         values.put(FIELD_ID_SELLER, house.getIdSeller());
 
+        values.put(FIELD_IMAGE_HOUSE, house.getImageHouse());
+
         return values;
     }
 
@@ -69,6 +71,8 @@ public class DbTableHouse implements BaseColumns {
         final int posWeekPrice = cursor.getColumnIndex(FIELD_WEEKPRICE);
         final int posIdSeller = cursor.getColumnIndex(FIELD_ID_SELLER);
 
+        final int posImageHouse = cursor.getColumnIndex(FIELD_IMAGE_HOUSE);
+
         House house = new House();
 
         house.setId(cursor.getInt(posId));
@@ -79,6 +83,8 @@ public class DbTableHouse implements BaseColumns {
         house.setBathroom(cursor.getInt(posBathroom));
         house.setWeekPrice(cursor.getInt(posWeekPrice));
         house.setIdSeller(cursor.getInt(posIdSeller));
+
+        house.setImageHouse(cursor.getString(posImageHouse));
 
         return house;
     }

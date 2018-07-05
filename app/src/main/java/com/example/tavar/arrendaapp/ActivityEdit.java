@@ -131,11 +131,11 @@ public class ActivityEdit extends AppCompatActivity implements LoaderManager.Loa
         getSupportLoaderManager().initLoader(SELLER_CURSOR_LOADER_ID,null,this);
     }
     private void saveAction() {
-        if (editTextDesc != null && editTextLoc != null && editTextPrice!=null) {
+        if (editTextDesc != null && editTextLoc != null) {
             save(saveView);
             finish();
         } else {
-            Toast.makeText(this, "Complete all parameters please", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.Completeallparameters, Toast.LENGTH_LONG).show();
         }
     }
     private void intiButtons(){
@@ -325,9 +325,9 @@ public class ActivityEdit extends AppCompatActivity implements LoaderManager.Loa
         );
 
         if (recordsAffected > 0) {
-            Toast.makeText(this, "Saved", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.Saved, Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(this, "Could not save", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.Couldnotsave, Toast.LENGTH_LONG).show();
         }
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -337,9 +337,9 @@ public class ActivityEdit extends AppCompatActivity implements LoaderManager.Loa
                 DbTableHouse._ID +"=?", new String [] { Integer.toString(house.getId()) });
 
         if (recordsAffected > 0) {
-            Toast.makeText(this, "Deleted", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.Deleted, Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(this, "Could not delete", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.Couldnotdelete, Toast.LENGTH_LONG).show();
         }
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
