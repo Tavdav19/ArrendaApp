@@ -1,18 +1,28 @@
 package com.example.tavar.arrendaapp;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class CursorAdapter extends RecyclerView.Adapter<CursorAdapter.FeedViewHolder> {
     private Context context;
+    private Cursor cursor = null;
 
     public CursorAdapter(Context context){ this.context = context; }
 
+
+    public void refreshData (Cursor cursor){
+        if(this.cursor != cursor){
+            this.cursor = cursor;
+            notifyDataSetChanged();
+        }
+    }
     /**
      * Called when RecyclerView needs a new {@link ViewHolder} of the given type to represent
      * an item.
@@ -62,7 +72,9 @@ public class CursorAdapter extends RecyclerView.Adapter<CursorAdapter.FeedViewHo
      */
     @Override
     public void onBindViewHolder(@NonNull CursorAdapter.FeedViewHolder holder, int position) {
-
+        cursor.moveToPosition(position);
+        House house = DbTableHouse.getCurrentHouseFromCursor(cursor);
+        holder.setHouse(house);
     }
 
     /**
@@ -72,12 +84,35 @@ public class CursorAdapter extends RecyclerView.Adapter<CursorAdapter.FeedViewHo
      */
     @Override
     public int getItemCount() {
-        return 0;
+        if(cursor == null) return 0;
+
+        return cursor.getCount();
     }
 
-    public class FeedViewHolder extends RecyclerView.ViewHolder{
+    public class FeedViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener {
+        private TextView textViewLoc;
+        private long houseId;
+
         public FeedViewHolder(View itemView){
             super(itemView);
+
+            textViewLoc = (TextView) itemView.findViewById(R.id.textViewLoc);
+
+            itemView.setOnClickListener(this);
+        }
+        public void setHouse(House house){
+            textViewLoc.setText(house.getLoc());
+            houseId = house.getId();
+        }
+
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        @Override
+        public void onClick(View v) {
+          return;
         }
     }
 }

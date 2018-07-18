@@ -36,6 +36,42 @@ public class DbTableHouse implements BaseColumns {
                         ")"
         );
     }
+    public static ContentValues getContentValues(House house) {
+        ContentValues values = new ContentValues();
+
+        values.put(FIELD_DESC, house.getDescription());
+        values.put(FIELD_LOC, house.getLoc());
+        values.put(FIELD_PEOPLE, house.getPeople());
+        values.put(FIELD_BEDROOM, house.getBedroom());
+        values.put(FIELD_BATHROOM, house.getBathroom());
+        values.put(FIELD_ID_SELLER, house.getIdSeller());
+
+        return values;
+    }
+
+    public static House getCurrentHouseFromCursor(Cursor cursor) {
+        final int posId = cursor.getColumnIndex(_ID);
+        final int posDesc = cursor.getColumnIndex(FIELD_DESC);
+        final int posLoc = cursor.getColumnIndex(FIELD_LOC);
+        final int posPeople = cursor.getColumnIndex(FIELD_PEOPLE);
+        final int posBedroom = cursor.getColumnIndex(FIELD_BEDROOM);
+        final int posBathroom = cursor.getColumnIndex(FIELD_BATHROOM);
+        final int posIdSeller = cursor.getColumnIndex(FIELD_ID_SELLER);
+
+        House house = new House();
+
+        house.setId(cursor.getInt(posId));
+        house.setDescription(cursor.getString(posDesc));
+        house.setLoc(cursor.getString(posLoc));
+        house.setPeople(cursor.getInt(posPeople));
+        house.setBedroom(cursor.getInt(posBedroom));
+        house.setBathroom(cursor.getInt(posBathroom));
+        house.setIdSeller(cursor.getInt(posIdSeller));
+
+        return house;
+    }
+
+
     /**
      * Convenience method for inserting a row into the categories table.
      *
@@ -108,6 +144,7 @@ public class DbTableHouse implements BaseColumns {
      * @see Cursor
      */
     public Cursor query (String[] columns, String selection, String[] selectionArgs, String groupBy, String having, String orderBy) {
-        return db.query(TABLE_HOUSE, columns, selection, selectionArgs, groupBy, having, orderBy);
+        Cursor cursor = db.query(TABLE_HOUSE, columns, selection, selectionArgs, groupBy, having, orderBy);
+        return cursor;
     }
 }
