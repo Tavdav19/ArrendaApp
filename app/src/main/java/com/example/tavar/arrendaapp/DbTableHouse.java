@@ -13,6 +13,7 @@ public class DbTableHouse implements BaseColumns {
     private static final String FIELD_PEOPLE = "people";
     private static final String FIELD_BEDROOM = "bedroom";
     private static final String FIELD_BATHROOM = "bathroom";
+    private static final String FIELD_WEEKPRICE= "weekPrice";
     private static final String FIELD_ID_SELLER= "idSeller";
 
     public DbTableHouse (SQLiteDatabase db){
@@ -28,6 +29,7 @@ public class DbTableHouse implements BaseColumns {
                         FIELD_PEOPLE + "INTEGER," +
                         FIELD_BEDROOM + "INTEGER," +
                         FIELD_BATHROOM + "INTEGER," +
+                        FIELD_WEEKPRICE + "INTEGER," +
                         FIELD_ID_SELLER + "LONG," +
 
                         "FOREIGN KEY (" + FIELD_ID_SELLER + ") REFERENCES " +
@@ -44,6 +46,7 @@ public class DbTableHouse implements BaseColumns {
         values.put(FIELD_PEOPLE, house.getPeople());
         values.put(FIELD_BEDROOM, house.getBedroom());
         values.put(FIELD_BATHROOM, house.getBathroom());
+        values.put(FIELD_WEEKPRICE, house.getWeekPrice());
         values.put(FIELD_ID_SELLER, house.getIdSeller());
 
         return values;
@@ -56,6 +59,7 @@ public class DbTableHouse implements BaseColumns {
         final int posPeople = cursor.getColumnIndex(FIELD_PEOPLE);
         final int posBedroom = cursor.getColumnIndex(FIELD_BEDROOM);
         final int posBathroom = cursor.getColumnIndex(FIELD_BATHROOM);
+        final int posWeekPrice = cursor.getColumnIndex(FIELD_WEEKPRICE);
         final int posIdSeller = cursor.getColumnIndex(FIELD_ID_SELLER);
 
         House house = new House();
@@ -66,6 +70,7 @@ public class DbTableHouse implements BaseColumns {
         house.setPeople(cursor.getInt(posPeople));
         house.setBedroom(cursor.getInt(posBedroom));
         house.setBathroom(cursor.getInt(posBathroom));
+        house.setWeekPrice(cursor.getInt(posWeekPrice));
         house.setIdSeller(cursor.getInt(posIdSeller));
 
         return house;

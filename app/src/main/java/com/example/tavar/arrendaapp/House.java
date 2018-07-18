@@ -8,6 +8,8 @@ public class House {
     private int people;
     private int bedroom;
     private int Bathroom;
+    private int weekPrice;
+
 
     public long getId() {
         return id;
@@ -64,4 +66,8 @@ public class House {
     public void setBathroom(int bathroom) {
         Bathroom = bathroom;
     }
+
+    public int getWeekPrice() {return weekPrice;}
+
+    public void setWeekPrice(int weekPrice) {this.weekPrice = weekPrice;}
 }
